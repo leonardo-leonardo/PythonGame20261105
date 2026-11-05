@@ -9,6 +9,14 @@ st.markdown(
     <style>
     .stApp {
         background-color: #000000;
+        overflow: hidden;
+    }
+    /* Disable main page scrolling */
+    html, body, [data-testid="stAppViewContainer"], [data-testid="stVerticalBlock"] {
+        overflow: hidden !important;
+        height: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
     }
     </style>
     """,
@@ -22,7 +30,7 @@ tetris_html = """
 <meta charset="UTF-8">
 <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-  body {
+  html, body {
     background-color: #000000;
     color: #1e395b;
     font-family: 'Segoe UI', Tahoma, sans-serif;
@@ -37,17 +45,17 @@ tetris_html = """
     -webkit-font-smoothing: antialiased;
   }
 
-  /* Authentic Windows Vista Aero Glass Window Frame */
+  /* Authentic Windows Vista Aero Glass Window Frame - Compact & Perfectly Fitted */
   .window {
     background: linear-gradient(135deg, rgba(230, 242, 255, 0.94) 0%, rgba(195, 222, 250, 0.88) 100%);
     backdrop-filter: blur(25px);
     -webkit-backdrop-filter: blur(25px);
     border: 1px solid rgba(255, 255, 255, 0.95);
     border-radius: 8px 8px 6px 6px;
-    box-shadow: 0 40px 90px rgba(0, 0, 0, 0.95), 
+    box-shadow: 0 30px 70px rgba(0, 0, 0, 0.95), 
                 inset 0 1px 0 rgba(255, 255, 255, 0.95),
                 0 0 0 1px rgba(30, 90, 160, 0.65);
-    width: 520px;
+    width: 480px;
     overflow: hidden;
     position: relative;
     box-sizing: border-box;
@@ -55,14 +63,14 @@ tetris_html = """
 
   .window-header {
     background: linear-gradient(to bottom, #f0f7ff 0%, #c4e0fb 38%, #7db6ed 39%, #468cd2 100%);
-    padding: 7px 12px;
+    padding: 6px 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid #2866a6;
     color: #0b2545;
     font-weight: 600;
-    font-size: 12px;
+    font-size: 11px;
     white-space: nowrap;
   }
 
@@ -80,15 +88,15 @@ tetris_html = """
   }
 
   .vista-ctrl-btn {
-    width: 22px;
-    height: 16px;
+    width: 20px;
+    height: 15px;
     background: linear-gradient(to bottom, #ffffff 0%, #e2effd 50%, #c5def7 51%, #eaf4ff 100%);
     border: 1px solid #3c7fb1;
     border-radius: 2px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 9px;
+    font-size: 8px;
     font-family: 'Segoe UI', sans-serif;
     color: #1e395b;
     cursor: pointer;
@@ -107,9 +115,9 @@ tetris_html = """
   }
 
   .window-body {
-    padding: 18px;
+    padding: 14px;
     display: flex;
-    gap: 18px;
+    gap: 14px;
     background: linear-gradient(135deg, rgba(238, 246, 254, 0.8) 0%, rgba(205, 228, 250, 0.7) 100%);
   }
 
@@ -117,37 +125,37 @@ tetris_html = """
     background-color: #030813;
     border: 2px solid #326ea6;
     border-radius: 4px;
-    box-shadow: inset 0 0 20px rgba(0,0,0,0.95), 0 4px 12px rgba(10,35,70,0.25);
+    box-shadow: inset 0 0 15px rgba(0,0,0,0.95), 0 3px 10px rgba(10,35,70,0.25);
   }
 
   .side-panel {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 170px;
+    width: 150px;
   }
 
   /* Authentic Windows Vista GroupBox Style */
   .vista-groupbox {
     border: 1px solid #8ab4df;
     border-radius: 4px;
-    padding: 10px 12px;
+    padding: 8px 10px;
     background: rgba(255, 255, 255, 0.5);
     box-shadow: inset 0 1px 3px rgba(255,255,255,0.8);
-    margin-bottom: 12px;
+    margin-bottom: 10px;
     position: relative;
   }
 
   .vista-groupbox legend {
-    font-size: 10px;
+    font-size: 9.5px;
     font-weight: 600;
     color: #1a4d80;
     padding: 0 4px;
-    margin-bottom: 4px;
+    margin-bottom: 2px;
   }
 
   .stat-value {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 700;
     color: #0b2545;
     text-align: center;
@@ -155,11 +163,11 @@ tetris_html = """
   }
 
   .controls-hint {
-    font-size: 9.5px;
-    line-height: 1.5;
+    font-size: 8.5px;
+    line-height: 1.4;
     color: #1e395b;
     border-top: 1px solid rgba(138, 180, 223, 0.6);
-    padding-top: 8px;
+    padding-top: 6px;
     font-weight: 400;
   }
 
@@ -170,12 +178,12 @@ tetris_html = """
     border-radius: 4px;
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 1), 
                 inset 0 -1px 2px rgba(0, 50, 100, 0.2),
-                0 2px 5px rgba(0, 0, 0, 0.15);
+                0 2px 4px rgba(0, 0, 0, 0.15);
     color: #1e395b;
     font-family: 'Segoe UI', Tahoma, sans-serif;
-    font-size: 11px;
+    font-size: 10.5px;
     font-weight: 600;
-    padding: 8px 14px;
+    padding: 7px 12px;
     cursor: pointer;
     width: 100%;
     text-align: center;
@@ -220,7 +228,7 @@ tetris_html = """
     background: linear-gradient(135deg, #f5fbff 0%, #d5eafc 100%);
     border: 2px solid #3c7fb1;
     border-radius: 6px;
-    width: 310px;
+    width: 280px;
     box-shadow: 0 20px 45px rgba(5,20,40,0.5), inset 0 1px 0 rgba(255,255,255,0.95);
     overflow: hidden;
     text-align: center;
@@ -229,28 +237,28 @@ tetris_html = """
   .dialog-header {
     background: linear-gradient(to bottom, #e4f2ff 0%, #7db6ed 100%);
     color: #0b2545;
-    padding: 8px 12px;
-    font-size: 11px;
+    padding: 7px 10px;
+    font-size: 10.5px;
     font-weight: 600;
     text-align: left;
     border-bottom: 1px solid #3c7fb1;
   }
 
   .dialog-content {
-    padding: 20px 16px;
-    font-size: 12px;
+    padding: 16px 14px;
+    font-size: 11px;
     color: #1e395b;
-    line-height: 1.5;
+    line-height: 1.4;
     font-weight: 400;
   }
 
   .dialog-icon {
-    font-size: 28px;
-    margin-bottom: 8px;
+    font-size: 24px;
+    margin-bottom: 6px;
   }
 
   .dialog-footer {
-    padding: 10px 14px;
+    padding: 8px 12px;
     background: #c5def7;
     border-top: 1px solid #9fcbf5;
     display: flex;
@@ -258,7 +266,7 @@ tetris_html = """
   }
 
   .dialog-btn {
-    width: 120px;
+    width: 110px;
   }
 </style>
 </head>
@@ -277,7 +285,8 @@ tetris_html = """
   </div>
 
   <div class="window-body">
-    <canvas id="tetris" width="280" height="476" tabindex="1"></canvas>
+    <!-- Compacted scale 24 for canvas to fit comfortably without scrolling -->
+    <canvas id="tetris" width="240" height="408" tabindex="1"></canvas>
     <div class="side-panel">
       <div>
         <div class="vista-groupbox">
@@ -318,7 +327,7 @@ tetris_html = """
 <script>
 const canvas = document.getElementById('tetris');
 const context = canvas.getContext('2d');
-context.scale(28, 28);
+context.scale(24, 24);
 
 const arena = createMatrix(10, 17);
 
@@ -637,4 +646,4 @@ draw();
 </html>
 """
 
-st.components.v1.html(tetris_html, height=620, scrolling=False)
+st.components.v1.html(tetris_html, height=500, scrolling=False)
