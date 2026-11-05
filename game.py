@@ -24,7 +24,7 @@ tetris_html = """
 <style>
   body {
     background-color: #000000;
-    color: #0b2d4f;
+    color: #1e395b;
     font-family: 'Segoe UI', Tahoma, sans-serif;
     display: flex;
     flex-direction: column;
@@ -34,35 +34,35 @@ tetris_html = """
     margin: 0;
     overflow: hidden;
     outline: none;
+    -webkit-font-smoothing: antialiased;
   }
 
   /* Authentic Windows Vista Aero Glass Window Frame */
   .window {
-    background: linear-gradient(135deg, rgba(235, 245, 255, 0.94) 0%, rgba(200, 225, 250, 0.88) 100%);
+    background: linear-gradient(135deg, rgba(230, 242, 255, 0.94) 0%, rgba(195, 222, 250, 0.88) 100%);
     backdrop-filter: blur(25px);
     -webkit-backdrop-filter: blur(25px);
     border: 1px solid rgba(255, 255, 255, 0.95);
     border-radius: 8px 8px 6px 6px;
-    box-shadow: 0 35px 80px rgba(0, 0, 0, 0.95), 
-                inset 0 1px 0 rgba(255, 255, 255, 0.9),
-                0 0 0 1px rgba(40, 110, 180, 0.6);
-    width: 480px;
+    box-shadow: 0 40px 90px rgba(0, 0, 0, 0.95), 
+                inset 0 1px 0 rgba(255, 255, 255, 0.95),
+                0 0 0 1px rgba(30, 90, 160, 0.65);
+    width: 520px;
     overflow: hidden;
     position: relative;
     box-sizing: border-box;
   }
 
   .window-header {
-    background: linear-gradient(to bottom, #e2f0ff 0%, #a2ccf2 40%, #68a5e0 41%, #4589ce 100%);
-    padding: 6px 10px;
+    background: linear-gradient(to bottom, #f0f7ff 0%, #c4e0fb 38%, #7db6ed 39%, #468cd2 100%);
+    padding: 7px 12px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid #2d6cae;
-    color: #0b2d4f;
-    font-weight: 700;
-    font-size: 11px;
-    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.9);
+    border-bottom: 1px solid #2866a6;
+    color: #0b2545;
+    font-weight: 600;
+    font-size: 12px;
     white-space: nowrap;
   }
 
@@ -70,11 +70,9 @@ tetris_html = """
     display: flex;
     align-items: center;
     gap: 6px;
-    overflow: hidden;
-    text-overflow: ellipsis;
   }
 
-  /* Authentic Windows Vista Rectangular Titlebar Buttons */
+  /* Authentic Windows Vista Rectangular Titlebar Controls */
   .window-controls {
     display: flex;
     gap: 3px;
@@ -82,9 +80,9 @@ tetris_html = """
   }
 
   .vista-ctrl-btn {
-    width: 20px;
+    width: 22px;
     height: 16px;
-    background: linear-gradient(to bottom, #f0f7ff 0%, #d2e6fc 50%, #b2d5fc 51%, #cfe4fc 100%);
+    background: linear-gradient(to bottom, #ffffff 0%, #e2effd 50%, #c5def7 51%, #eaf4ff 100%);
     border: 1px solid #3c7fb1;
     border-radius: 2px;
     display: flex;
@@ -92,126 +90,125 @@ tetris_html = """
     justify-content: center;
     font-size: 9px;
     font-family: 'Segoe UI', sans-serif;
-    color: #0b2d4f;
+    color: #1e395b;
     cursor: pointer;
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.8);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.9);
   }
 
   .vista-ctrl-btn:hover {
-    background: linear-gradient(to bottom, #e2f0ff 0%, #b2d8ff 50%, #8ac2ff 51%, #bce0ff 100%);
+    background: linear-gradient(to bottom, #ffffff 0%, #f0f7ff 50%, #d2e6fc 51%, #f5fcff 100%);
     border-color: #286bb0;
   }
 
   .vista-ctrl-btn.close:hover {
-    background: linear-gradient(to bottom, #e81123 0%, #c50f1f 100%);
+    background: linear-gradient(to bottom, #f88379 0%, #e81123 100%);
     color: white;
     border-color: #a80000;
   }
 
   .window-body {
-    padding: 16px;
+    padding: 18px;
     display: flex;
-    gap: 16px;
-    background: linear-gradient(135deg, rgba(240, 248, 255, 0.7) 0%, rgba(200, 225, 245, 0.6) 100%);
+    gap: 18px;
+    background: linear-gradient(135deg, rgba(238, 246, 254, 0.8) 0%, rgba(205, 228, 250, 0.7) 100%);
   }
 
   canvas {
-    background-color: #050d1a;
-    border: 3px solid #3b7bb8;
-    border-radius: 6px;
-    box-shadow: inset 0 0 20px rgba(0,0,0,0.95), 0 6px 15px rgba(10,35,70,0.3);
+    background-color: #030813;
+    border: 2px solid #326ea6;
+    border-radius: 4px;
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.95), 0 4px 12px rgba(10,35,70,0.25);
   }
 
   .side-panel {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 160px;
+    width: 170px;
   }
 
-  .stats-box {
-    background: linear-gradient(to bottom, #ffffff 0%, #e2effd 100%);
-    border: 1px solid #6fa8df;
-    border-radius: 6px;
-    padding: 10px;
-    text-align: center;
-    box-shadow: inset 0 1px 4px rgba(255,255,255,0.95), 0 4px 10px rgba(10,35,70,0.1);
+  /* Authentic Windows Vista GroupBox Style */
+  .vista-groupbox {
+    border: 1px solid #8ab4df;
+    border-radius: 4px;
+    padding: 10px 12px;
+    background: rgba(255, 255, 255, 0.5);
+    box-shadow: inset 0 1px 3px rgba(255,255,255,0.8);
     margin-bottom: 12px;
+    position: relative;
   }
 
-  .stats-box h3 {
+  .vista-groupbox legend {
     font-size: 10px;
-    color: #1a5296;
-    margin: 0 0 4px 0;
-    font-weight: 700;
-    letter-spacing: 1px;
-    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.9);
+    font-weight: 600;
+    color: #1a4d80;
+    padding: 0 4px;
+    margin-bottom: 4px;
   }
 
-  .stats-box p {
+  .stat-value {
     font-size: 18px;
-    margin: 0;
-    color: #0b2d4f;
     font-weight: 700;
-    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.9);
+    color: #0b2545;
+    text-align: center;
+    margin: 0;
   }
 
   .controls-hint {
-    font-size: 9px;
-    line-height: 1.4;
-    color: #1c4b78;
-    border-top: 1px solid rgba(111, 168, 223, 0.5);
+    font-size: 9.5px;
+    line-height: 1.5;
+    color: #1e395b;
+    border-top: 1px solid rgba(138, 180, 223, 0.6);
     padding-top: 8px;
-    font-weight: 600;
-    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.9);
+    font-weight: 400;
   }
 
-  /* Exact Windows Vista Aero Glossy Capsule Pill Button */
-  .btn {
-    background: linear-gradient(to bottom, #ffffff 0%, #ffffff 45%, #d4e7fc 50%, #8fc2f2 100%);
+  /* Authentic Windows Vista Glossy Button */
+  .vista-btn {
+    background: linear-gradient(to bottom, #ffffff 0%, #f4f9ff 45%, #d4e7fc 50%, #9bc6f3 100%);
     border: 1px solid #3c7fb1;
-    border-radius: 16px;
+    border-radius: 4px;
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 1), 
-                inset 0 -1px 2px rgba(0, 60, 130, 0.25),
-                0 3px 6px rgba(0, 0, 0, 0.25);
-    color: #0b2d4f;
+                inset 0 -1px 2px rgba(0, 50, 100, 0.2),
+                0 2px 5px rgba(0, 0, 0, 0.15);
+    color: #1e395b;
     font-family: 'Segoe UI', Tahoma, sans-serif;
     font-size: 11px;
-    font-weight: 700;
-    padding: 10px 16px;
+    font-weight: 600;
+    padding: 8px 14px;
     cursor: pointer;
     width: 100%;
-    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.9);
-    transition: all 0.1s ease;
     text-align: center;
+    transition: all 0.1s ease;
   }
 
-  .btn:hover {
-    background: linear-gradient(to bottom, #ffffff 0%, #ffffff 45%, #e6f2ff 50%, #a6d3f8 100%);
+  .vista-btn:hover {
+    background: linear-gradient(to bottom, #ffffff 0%, #ffffff 45%, #e3f0fe 50%, #afdfed 100%);
     border-color: #2b628d;
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 1), 
-                inset 0 -1px 3px rgba(0, 70, 150, 0.35),
-                0 4px 8px rgba(0, 0, 0, 0.3);
+                inset 0 -1px 2px rgba(0, 60, 120, 0.3),
+                0 3px 6px rgba(0, 0, 0, 0.2);
   }
 
-  .btn:active {
-    background: linear-gradient(to bottom, #7caedc 0%, #a6cfea 50%, #ffffff 100%);
-    box-shadow: inset 0 2px 4px rgba(10, 40, 80, 0.4);
+  .vista-btn:active {
+    background: linear-gradient(to bottom, #89bfe8 0%, #b8defc 50%, #e3f0fe 100%);
+    box-shadow: inset 0 2px 4px rgba(10, 40, 80, 0.3);
   }
 
   /* Windows Vista Dialog Popup Modal */
   .modal-overlay {
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(10, 35, 70, 0.5);
-    backdrop-filter: blur(5px);
+    background: rgba(10, 30, 60, 0.45);
+    backdrop-filter: blur(4px);
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 100;
     visibility: hidden;
     opacity: 0;
-    transition: 0.25s ease-in-out;
+    transition: 0.2s ease-in-out;
+    border-radius: 8px;
   }
 
   .modal-overlay.active {
@@ -221,41 +218,39 @@ tetris_html = """
 
   .dialog-box {
     background: linear-gradient(135deg, #f5fbff 0%, #d5eafc 100%);
-    border: 2px solid #4a8ec9;
-    border-radius: 8px;
+    border: 2px solid #3c7fb1;
+    border-radius: 6px;
     width: 310px;
-    box-shadow: 0 25px 50px rgba(5,25,55,0.6), inset 0 1px 0 rgba(255,255,255,0.95);
+    box-shadow: 0 20px 45px rgba(5,20,40,0.5), inset 0 1px 0 rgba(255,255,255,0.95);
     overflow: hidden;
     text-align: center;
   }
 
   .dialog-header {
-    background: linear-gradient(to bottom, #e4f2ff 0%, #81bbf2 100%);
-    color: #0b2d4f;
-    padding: 10px 14px;
+    background: linear-gradient(to bottom, #e4f2ff 0%, #7db6ed 100%);
+    color: #0b2545;
+    padding: 8px 12px;
     font-size: 11px;
-    font-weight: 700;
+    font-weight: 600;
     text-align: left;
-    text-shadow: 0 1px 0 rgba(255,255,255,0.9);
-    border-bottom: 1px solid #5fa9ed;
+    border-bottom: 1px solid #3c7fb1;
   }
 
   .dialog-content {
-    padding: 22px 16px;
+    padding: 20px 16px;
     font-size: 12px;
-    color: #0b2d4f;
-    line-height: 1.6;
-    font-weight: 600;
-    text-shadow: 0 1px 0 rgba(255,255,255,0.9);
+    color: #1e395b;
+    line-height: 1.5;
+    font-weight: 400;
   }
 
   .dialog-icon {
-    font-size: 30px;
-    margin-bottom: 10px;
+    font-size: 28px;
+    margin-bottom: 8px;
   }
 
   .dialog-footer {
-    padding: 14px;
+    padding: 10px 14px;
     background: #c5def7;
     border-top: 1px solid #9fcbf5;
     display: flex;
@@ -263,7 +258,7 @@ tetris_html = """
   }
 
   .dialog-btn {
-    width: 130px;
+    width: 120px;
   }
 </style>
 </head>
@@ -272,7 +267,7 @@ tetris_html = """
 <div class="window">
   <div class="window-header">
     <div class="window-title">
-      <span>🪟</span> Tetris - Vista Aero Edition
+      <span>🪟</span> Tetris - Windows Vista Aero Edition
     </div>
     <div class="window-controls">
       <div class="vista-ctrl-btn">🗕</div>
@@ -285,15 +280,15 @@ tetris_html = """
     <canvas id="tetris" width="280" height="476" tabindex="1"></canvas>
     <div class="side-panel">
       <div>
-        <div class="stats-box">
-          <h3>SCORE</h3>
-          <p id="score">0</p>
+        <div class="vista-groupbox">
+          <legend>SCORE</legend>
+          <p class="stat-value" id="score">0</p>
         </div>
-        <div class="stats-box">
-          <h3>LEVEL</h3>
-          <p id="level">1</p>
+        <div class="vista-groupbox">
+          <legend>LEVEL</legend>
+          <p class="stat-value" id="level">1</p>
         </div>
-        <button class="btn" id="startBtn">START</button>
+        <button class="vista-btn" id="startBtn">START</button>
       </div>
       <div class="controls-hint">
         <strong>CONTROLS:</strong><br>
@@ -304,7 +299,7 @@ tetris_html = """
       </div>
     </div>
 
-    <!-- Friendly Vista Dialog Popup -->
+    <!-- Authentic Vista Dialog Popup -->
     <div class="modal-overlay" id="popupModal">
       <div class="dialog-box">
         <div class="dialog-header">Windows Information</div>
@@ -313,7 +308,7 @@ tetris_html = """
           <p id="popupMessage">Wonderful game! You did fantastic stacking those blocks. Ready for another round?</p>
         </div>
         <div class="dialog-footer">
-          <button class="btn dialog-btn" id="popupBtn">Play Again</button>
+          <button class="vista-btn dialog-btn" id="popupBtn">Play Again</button>
         </div>
       </div>
     </div>
@@ -431,7 +426,7 @@ function drawMatrix(matrix, offset) {
 }
 
 function draw() {
-    context.fillStyle = '#050d1a';
+    context.fillStyle = '#030813';
     context.fillRect(0, 0, canvas.width, canvas.height);
     drawMatrix(arena, {x: 0, y: 0});
     drawMatrix(player.matrix, player.pos);
@@ -552,7 +547,7 @@ function arenaSweep() {
 }
 
 let dropCounter = 0;
-let dropInterval = 900; // Normal starting speed
+let dropInterval = 900;
 let lastTime = 0;
 let isRunning = false;
 
@@ -642,4 +637,4 @@ draw();
 </html>
 """
 
-st.components.v1.html(tetris_html, height=600, scrolling=False)
+st.components.v1.html(tetris_html, height=620, scrolling=False)
