@@ -1,9 +1,7 @@
 import streamlit as st
 
 st.set_page_config(
-    page_title="Windows Vista Aero Tetris - Professional Edition",
-    page_icon="🪟",
-    layout="centered",
+    page_title="Windows Vista Aero Tetris", page_icon="🪟", layout="centered"
 )
 
 st.markdown(
@@ -26,7 +24,7 @@ tetris_html = """
 <style>
   body {
     background-color: #000000;
-    color: #d0e4f7;
+    color: #1a3c5e;
     font-family: 'Segoe UI', Tahoma, sans-serif;
     display: flex;
     flex-direction: column;
@@ -38,16 +36,16 @@ tetris_html = """
     outline: none;
   }
 
-  /* Professional Dark Windows Vista Aero Glass Container */
+  /* Authentic Windows Vista Aero Glass Window */
   .window {
-    background: linear-gradient(135deg, rgba(20, 35, 55, 0.94) 0%, rgba(10, 20, 35, 0.96) 100%);
+    background: linear-gradient(135deg, rgba(235, 245, 255, 0.92) 0%, rgba(200, 225, 250, 0.85) 100%);
     backdrop-filter: blur(25px);
     -webkit-backdrop-filter: blur(25px);
-    border: 2px solid rgba(80, 150, 220, 0.5);
-    border-radius: 12px;
-    box-shadow: 0 35px 80px rgba(0, 0, 0, 0.95), 
-                inset 0 0 30px rgba(70, 140, 220, 0.2),
-                0 0 0 1px rgba(120, 180, 240, 0.3);
+    border: 2px solid rgba(255, 255, 255, 0.95);
+    border-radius: 10px;
+    box-shadow: 0 30px 70px rgba(0, 0, 0, 0.9), 
+                inset 0 0 25px rgba(255, 255, 255, 0.85),
+                0 0 0 1px rgba(70, 140, 210, 0.6);
     width: 480px;
     padding: 24px;
     display: flex;
@@ -57,10 +55,10 @@ tetris_html = """
   }
 
   canvas {
-    background-color: #03070f;
-    border: 3px solid #3b82c4;
+    background-color: #050d1a;
+    border: 3px solid #3b7bb8;
     border-radius: 6px;
-    box-shadow: inset 0 0 25px rgba(0,0,0,0.95), 0 6px 18px rgba(0,0,0,0.6);
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.95), 0 6px 15px rgba(10,35,70,0.3);
   }
 
   .side-panel {
@@ -71,96 +69,93 @@ tetris_html = """
   }
 
   .stats-box {
-    background: linear-gradient(to bottom, rgba(25, 45, 75, 0.9) 0%, rgba(15, 30, 50, 0.9) 100%);
-    border: 1px solid rgba(70, 140, 210, 0.4);
-    border-radius: 8px;
+    background: linear-gradient(to bottom, #ffffff 0%, #e2effd 100%);
+    border: 1px solid #6fa8df;
+    border-radius: 6px;
     padding: 12px;
     text-align: center;
-    box-shadow: inset 0 1px 4px rgba(255,255,255,0.15), 0 4px 12px rgba(0,0,0,0.4);
+    box-shadow: inset 0 1px 4px rgba(255,255,255,0.95), 0 4px 10px rgba(10,35,70,0.1);
     margin-bottom: 14px;
   }
 
   .stats-box h3 {
     font-size: 10px;
-    color: #7abaff;
+    color: #1a5296;
     margin: 0 0 6px 0;
     font-weight: 700;
     letter-spacing: 1px;
-    text-shadow: 0 0 6px rgba(122, 186, 255, 0.4);
   }
 
   .stats-box p {
     font-size: 20px;
     margin: 0;
-    color: #ffffff;
+    color: #0b2d4f;
     font-weight: 700;
-    text-shadow: 0 1px 2px rgba(0,0,0,0.8), 0 0 8px rgba(255,255,255,0.6);
+    text-shadow: 0 1px 0 #fff;
   }
 
   .controls-hint {
     font-size: 9px;
     line-height: 1.5;
-    color: #9abfdc;
-    border-top: 1px solid rgba(70, 140, 210, 0.3);
+    color: #1c4b78;
+    border-top: 1px solid rgba(111, 168, 223, 0.5);
     padding-top: 10px;
     font-weight: 600;
-    text-shadow: 0 1px 1px rgba(0,0,0,0.5);
   }
 
-  /* Exact Classic Aero Pill Button Matching Provided Reference */
+  /* Exact Windows Vista Aero Glossy Capsule Pill Button */
   .btn {
     background: linear-gradient(to bottom, 
-      rgba(255, 255, 255, 0.95) 0%, 
-      rgba(255, 255, 255, 0.75) 49%, 
-      rgba(130, 185, 240, 0.9) 50%, 
-      rgba(80, 145, 215, 0.95) 100%
+      #ffffff 0%, 
+      #ffffff 45%, 
+      #cbe3f7 50%, 
+      #8ab5e2 100%
     );
-    border: 1px solid rgba(40, 100, 170, 0.8);
+    border: 1px solid #3c7fb1;
     border-radius: 18px;
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 1), 
-                inset 0 -1px 2px rgba(0, 40, 90, 0.3),
-                0 4px 12px rgba(0, 0, 0, 0.4);
-    color: #102a45;
+                inset 0 -1px 2px rgba(0, 50, 100, 0.3),
+                0 3px 6px rgba(0, 0, 0, 0.25);
+    color: #1a3c5e;
     font-family: 'Segoe UI', Tahoma, sans-serif;
     font-size: 11px;
     font-weight: 700;
     padding: 11px 16px;
     cursor: pointer;
     width: 100%;
-    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.9), 0 0 6px rgba(255, 255, 255, 0.8);
-    transition: all 0.15s ease;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.9);
+    transition: all 0.12s ease;
     text-align: center;
   }
 
   .btn:hover {
     background: linear-gradient(to bottom, 
-      rgba(255, 255, 255, 1) 0%, 
-      rgba(240, 248, 255, 0.9) 49%, 
-      rgba(150, 205, 255, 0.95) 50%, 
-      rgba(100, 165, 235, 1) 100%
+      #ffffff 0%, 
+      #ffffff 45%, 
+      #dbeafa 50%, 
+      #9cc2ee 100%
     );
+    border-color: #2b628d;
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 1), 
-                inset 0 -1px 3px rgba(0, 60, 130, 0.4),
-                0 6px 16px rgba(0, 0, 0, 0.5);
-    border-color: #3b82c4;
-    text-shadow: 0 1px 1px rgba(255, 255, 255, 1), 0 0 10px rgba(255, 255, 255, 1);
+                inset 0 -1px 3px rgba(0, 60, 120, 0.4),
+                0 4px 8px rgba(0, 0, 0, 0.3);
   }
 
   .btn:active {
     background: linear-gradient(to bottom, 
-      rgba(80, 145, 215, 1) 0%, 
-      rgba(130, 185, 240, 1) 50%, 
-      rgba(255, 255, 255, 0.9) 100%
+      #7caedc 0%, 
+      #a6cfea 50%, 
+      #ffffff 100%
     );
-    box-shadow: inset 0 2px 6px rgba(0, 30, 70, 0.5);
+    box-shadow: inset 0 2px 4px rgba(10, 40, 80, 0.4);
   }
 
-  /* Professional Dark Vista Dialog Popup Modal */
+  /* Windows Vista Dialog Popup Modal */
   .modal-overlay {
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(0, 10, 25, 0.7);
-    backdrop-filter: blur(6px);
+    background: rgba(10, 35, 70, 0.5);
+    backdrop-filter: blur(5px);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -168,7 +163,7 @@ tetris_html = """
     visibility: hidden;
     opacity: 0;
     transition: 0.25s ease-in-out;
-    border-radius: 12px;
+    border-radius: 10px;
   }
 
   .modal-overlay.active {
@@ -177,33 +172,32 @@ tetris_html = """
   }
 
   .dialog-box {
-    background: linear-gradient(135deg, rgba(25, 45, 75, 0.98) 0%, rgba(12, 24, 42, 0.98) 100%);
+    background: linear-gradient(135deg, #f5fbff 0%, #d5eafc 100%);
     border: 2px solid #4a8ec9;
-    border-radius: 10px;
+    border-radius: 8px;
     width: 310px;
-    box-shadow: 0 30px 60px rgba(0,0,0,0.8), inset 0 1px 0 rgba(255,255,255,0.3);
+    box-shadow: 0 25px 50px rgba(5,25,55,0.6), inset 0 1px 0 rgba(255,255,255,0.95);
     overflow: hidden;
     text-align: center;
   }
 
   .dialog-header {
-    background: linear-gradient(to bottom, #4a90e2 0%, #1c5baf 100%);
-    color: white;
+    background: linear-gradient(to bottom, #e4f2ff 0%, #81bbf2 100%);
+    color: #0b2d4f;
     padding: 10px 14px;
     font-size: 11px;
     font-weight: 700;
     text-align: left;
-    text-shadow: 0 1px 2px rgba(0,0,0,0.6);
+    text-shadow: 0 1px 0 rgba(255,255,255,0.9);
     border-bottom: 1px solid #5fa9ed;
   }
 
   .dialog-content {
     padding: 22px 16px;
     font-size: 12px;
-    color: #e0f0ff;
+    color: #0b2d4f;
     line-height: 1.6;
     font-weight: 600;
-    text-shadow: 0 0 6px rgba(224, 240, 255, 0.4);
   }
 
   .dialog-icon {
@@ -213,8 +207,8 @@ tetris_html = """
 
   .dialog-footer {
     padding: 14px;
-    background: rgba(10, 20, 35, 0.9);
-    border-top: 1px solid rgba(70, 140, 210, 0.3);
+    background: #c5def7;
+    border-top: 1px solid #9fcbf5;
     display: flex;
     justify-content: center;
   }
@@ -343,7 +337,7 @@ function createPiece(type) {
     }
 }
 
-// 7-Bag Randomizer for balanced and regular block distribution
+// 7-Bag Randomizer for regular and balanced block distribution
 let pieceBag = [];
 function shuffle(array) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -375,7 +369,7 @@ function drawMatrix(matrix, offset) {
 }
 
 function draw() {
-    context.fillStyle = '#03070f';
+    context.fillStyle = '#050d1a';
     context.fillRect(0, 0, canvas.width, canvas.height);
     drawMatrix(arena, {x: 0, y: 0});
     drawMatrix(player.matrix, player.pos);
