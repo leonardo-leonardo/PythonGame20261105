@@ -38,7 +38,7 @@ tetris_html = """
 
   /* Authentic Windows Vista Aero Glass Window Frame */
   .window {
-    background: linear-gradient(135deg, rgba(235, 245, 255, 0.92) 0%, rgba(200, 225, 250, 0.85) 100%);
+    background: linear-gradient(135deg, rgba(235, 245, 255, 0.94) 0%, rgba(200, 225, 250, 0.88) 100%);
     backdrop-filter: blur(25px);
     -webkit-backdrop-filter: blur(25px);
     border: 1px solid rgba(255, 255, 255, 0.95);
@@ -54,44 +54,59 @@ tetris_html = """
 
   .window-header {
     background: linear-gradient(to bottom, #e2f0ff 0%, #a2ccf2 40%, #68a5e0 41%, #4589ce 100%);
-    padding: 8px 12px;
+    padding: 6px 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid #2d6cae;
     color: #0b2d4f;
     font-weight: 700;
-    font-size: 12px;
+    font-size: 11px;
     text-shadow: 0 1px 0 rgba(255, 255, 255, 0.9);
+    white-space: nowrap;
   }
 
   .window-title {
     display: flex;
     align-items: center;
     gap: 6px;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
+  /* Authentic Windows Vista Rectangular Titlebar Buttons */
   .window-controls {
     display: flex;
-    gap: 4px;
+    gap: 3px;
+    align-items: center;
   }
 
-  .win-btn {
-    width: 14px;
-    height: 14px;
-    border-radius: 50%;
-    border: 1px solid rgba(255,255,255,0.8);
-    background: linear-gradient(to bottom, #ff5f56 0%, #e0443e 100%);
-    cursor: pointer;
-    font-size: 8px;
-    color: white;
+  .vista-ctrl-btn {
+    width: 20px;
+    height: 16px;
+    background: linear-gradient(to bottom, #f0f7ff 0%, #d2e6fc 50%, #b2d5fc 51%, #cfe4fc 100%);
+    border: 1px solid #3c7fb1;
+    border-radius: 2px;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+    font-size: 9px;
+    font-family: 'Segoe UI', sans-serif;
+    color: #0b2d4f;
+    cursor: pointer;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.8);
   }
-  .win-btn.min { background: linear-gradient(to bottom, #ffbd2e 0%, #dea123 100%); }
-  .win-btn.max { background: linear-gradient(to bottom, #27c93f 0%, #1aab29 100%); }
+
+  .vista-ctrl-btn:hover {
+    background: linear-gradient(to bottom, #e2f0ff 0%, #b2d8ff 50%, #8ac2ff 51%, #bce0ff 100%);
+    border-color: #286bb0;
+  }
+
+  .vista-ctrl-btn.close:hover {
+    background: linear-gradient(to bottom, #e81123 0%, #c50f1f 100%);
+    color: white;
+    border-color: #a80000;
+  }
 
   .window-body {
     padding: 16px;
@@ -257,12 +272,12 @@ tetris_html = """
 <div class="window">
   <div class="window-header">
     <div class="window-title">
-      <span>🪟</span> Tetris - Windows Vista Aero Edition
+      <span>🪟</span> Tetris - Vista Aero Edition
     </div>
     <div class="window-controls">
-      <div class="win-btn min"></div>
-      <div class="win-btn max"></div>
-      <div class="win-btn"></div>
+      <div class="vista-ctrl-btn">🗕</div>
+      <div class="vista-ctrl-btn">🗖</div>
+      <div class="vista-ctrl-btn close">✕</div>
     </div>
   </div>
 
