@@ -24,7 +24,7 @@ tetris_html = """
 <style>
   body {
     background-color: #000000;
-    color: #1a3c5e;
+    color: #0b2d4f;
     font-family: 'Segoe UI', Tahoma, sans-serif;
     display: flex;
     flex-direction: column;
@@ -36,22 +36,68 @@ tetris_html = """
     outline: none;
   }
 
-  /* Authentic Windows Vista Aero Glass Window */
+  /* Authentic Windows Vista Aero Glass Window Frame */
   .window {
     background: linear-gradient(135deg, rgba(235, 245, 255, 0.92) 0%, rgba(200, 225, 250, 0.85) 100%);
     backdrop-filter: blur(25px);
     -webkit-backdrop-filter: blur(25px);
-    border: 2px solid rgba(255, 255, 255, 0.95);
-    border-radius: 10px;
-    box-shadow: 0 30px 70px rgba(0, 0, 0, 0.9), 
-                inset 0 0 25px rgba(255, 255, 255, 0.85),
-                0 0 0 1px rgba(70, 140, 210, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.95);
+    border-radius: 8px 8px 6px 6px;
+    box-shadow: 0 35px 80px rgba(0, 0, 0, 0.95), 
+                inset 0 1px 0 rgba(255, 255, 255, 0.9),
+                0 0 0 1px rgba(40, 110, 180, 0.6);
     width: 480px;
-    padding: 24px;
-    display: flex;
-    gap: 20px;
+    overflow: hidden;
     position: relative;
     box-sizing: border-box;
+  }
+
+  .window-header {
+    background: linear-gradient(to bottom, #e2f0ff 0%, #a2ccf2 40%, #68a5e0 41%, #4589ce 100%);
+    padding: 8px 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #2d6cae;
+    color: #0b2d4f;
+    font-weight: 700;
+    font-size: 12px;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.9);
+  }
+
+  .window-title {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .window-controls {
+    display: flex;
+    gap: 4px;
+  }
+
+  .win-btn {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.8);
+    background: linear-gradient(to bottom, #ff5f56 0%, #e0443e 100%);
+    cursor: pointer;
+    font-size: 8px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+  }
+  .win-btn.min { background: linear-gradient(to bottom, #ffbd2e 0%, #dea123 100%); }
+  .win-btn.max { background: linear-gradient(to bottom, #27c93f 0%, #1aab29 100%); }
+
+  .window-body {
+    padding: 16px;
+    display: flex;
+    gap: 16px;
+    background: linear-gradient(135deg, rgba(240, 248, 255, 0.7) 0%, rgba(200, 225, 245, 0.6) 100%);
   }
 
   canvas {
@@ -72,84 +118,69 @@ tetris_html = """
     background: linear-gradient(to bottom, #ffffff 0%, #e2effd 100%);
     border: 1px solid #6fa8df;
     border-radius: 6px;
-    padding: 12px;
+    padding: 10px;
     text-align: center;
     box-shadow: inset 0 1px 4px rgba(255,255,255,0.95), 0 4px 10px rgba(10,35,70,0.1);
-    margin-bottom: 14px;
+    margin-bottom: 12px;
   }
 
   .stats-box h3 {
     font-size: 10px;
     color: #1a5296;
-    margin: 0 0 6px 0;
+    margin: 0 0 4px 0;
     font-weight: 700;
     letter-spacing: 1px;
-    text-shadow: 0 0 4px rgba(255, 255, 255, 0.8);
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.9);
   }
 
   .stats-box p {
-    font-size: 20px;
+    font-size: 18px;
     margin: 0;
     color: #0b2d4f;
     font-weight: 700;
-    text-shadow: 0 0 6px rgba(255, 255, 255, 0.9), 0 1px 1px rgba(0, 0, 0, 0.2);
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.9);
   }
 
   .controls-hint {
     font-size: 9px;
-    line-height: 1.5;
+    line-height: 1.4;
     color: #1c4b78;
     border-top: 1px solid rgba(111, 168, 223, 0.5);
-    padding-top: 10px;
+    padding-top: 8px;
     font-weight: 600;
-    text-shadow: 0 0 4px rgba(255, 255, 255, 0.7);
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.9);
   }
 
-  /* Exact Windows Vista Aero Glossy Capsule Pill Button with Soft Text Glow */
+  /* Exact Windows Vista Aero Glossy Capsule Pill Button */
   .btn {
-    background: linear-gradient(to bottom, 
-      #ffffff 0%, 
-      #ffffff 45%, 
-      #cbe3f7 50%, 
-      #8ab5e2 100%
-    );
+    background: linear-gradient(to bottom, #ffffff 0%, #ffffff 45%, #d4e7fc 50%, #8fc2f2 100%);
     border: 1px solid #3c7fb1;
-    border-radius: 18px;
+    border-radius: 16px;
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 1), 
-                inset 0 -1px 2px rgba(0, 50, 100, 0.3),
+                inset 0 -1px 2px rgba(0, 60, 130, 0.25),
                 0 3px 6px rgba(0, 0, 0, 0.25);
-    color: #1a3c5e;
+    color: #0b2d4f;
     font-family: 'Segoe UI', Tahoma, sans-serif;
     font-size: 11px;
     font-weight: 700;
-    padding: 11px 16px;
+    padding: 10px 16px;
     cursor: pointer;
     width: 100%;
-    text-shadow: 0 0 6px rgba(255, 255, 255, 0.95), 0 1px 1px rgba(255, 255, 255, 0.8);
-    transition: all 0.12s ease;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.9);
+    transition: all 0.1s ease;
     text-align: center;
   }
 
   .btn:hover {
-    background: linear-gradient(to bottom, 
-      #ffffff 0%, 
-      #ffffff 45%, 
-      #dbeafa 50%, 
-      #9cc2ee 100%
-    );
+    background: linear-gradient(to bottom, #ffffff 0%, #ffffff 45%, #e6f2ff 50%, #a6d3f8 100%);
     border-color: #2b628d;
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 1), 
-                inset 0 -1px 3px rgba(0, 60, 120, 0.4),
+                inset 0 -1px 3px rgba(0, 70, 150, 0.35),
                 0 4px 8px rgba(0, 0, 0, 0.3);
-    text-shadow: 0 0 10px rgba(255, 255, 255, 1), 0 1px 2px rgba(255, 255, 255, 0.9);
   }
 
   .btn:active {
-    background: linear-gradient(to bottom, 
-      #7caedc 0%, 
-      #a6cfea 50%, 
-      #ffffff 100%
-    );
+    background: linear-gradient(to bottom, #7caedc 0%, #a6cfea 50%, #ffffff 100%);
     box-shadow: inset 0 2px 4px rgba(10, 40, 80, 0.4);
   }
 
@@ -166,7 +197,6 @@ tetris_html = """
     visibility: hidden;
     opacity: 0;
     transition: 0.25s ease-in-out;
-    border-radius: 10px;
   }
 
   .modal-overlay.active {
@@ -191,7 +221,7 @@ tetris_html = """
     font-size: 11px;
     font-weight: 700;
     text-align: left;
-    text-shadow: 0 0 4px rgba(255, 255, 255, 0.9);
+    text-shadow: 0 1px 0 rgba(255,255,255,0.9);
     border-bottom: 1px solid #5fa9ed;
   }
 
@@ -201,7 +231,7 @@ tetris_html = """
     color: #0b2d4f;
     line-height: 1.6;
     font-weight: 600;
-    text-shadow: 0 0 4px rgba(255, 255, 255, 0.8);
+    text-shadow: 0 1px 0 rgba(255,255,255,0.9);
   }
 
   .dialog-icon {
@@ -225,38 +255,51 @@ tetris_html = """
 <body>
 
 <div class="window">
-  <canvas id="tetris" width="280" height="476" tabindex="1"></canvas>
-  <div class="side-panel">
-    <div>
-      <div class="stats-box">
-        <h3>SCORE</h3>
-        <p id="score">0</p>
-      </div>
-      <div class="stats-box">
-        <h3>LEVEL</h3>
-        <p id="level">1</p>
-      </div>
-      <button class="btn" id="startBtn">START</button>
+  <div class="window-header">
+    <div class="window-title">
+      <span>🪟</span> Tetris - Windows Vista Aero Edition
     </div>
-    <div class="controls-hint">
-      <strong>CONTROLS:</strong><br>
-      ← → / A D : Move<br>
-      ↓ / S : Soft Drop<br>
-      ↑ / W : Rotate<br>
-      Space : Hard Drop
+    <div class="window-controls">
+      <div class="win-btn min"></div>
+      <div class="win-btn max"></div>
+      <div class="win-btn"></div>
     </div>
   </div>
 
-  <!-- Friendly Vista Dialog Popup -->
-  <div class="modal-overlay" id="popupModal">
-    <div class="dialog-box">
-      <div class="dialog-header">Windows Information</div>
-      <div class="dialog-content">
-        <div class="dialog-icon" id="popupIcon">🌟</div>
-        <p id="popupMessage">Wonderful game! You did fantastic stacking those blocks. Ready for another round?</p>
+  <div class="window-body">
+    <canvas id="tetris" width="280" height="476" tabindex="1"></canvas>
+    <div class="side-panel">
+      <div>
+        <div class="stats-box">
+          <h3>SCORE</h3>
+          <p id="score">0</p>
+        </div>
+        <div class="stats-box">
+          <h3>LEVEL</h3>
+          <p id="level">1</p>
+        </div>
+        <button class="btn" id="startBtn">START</button>
       </div>
-      <div class="dialog-footer">
-        <button class="btn dialog-btn" id="popupBtn">Play Again</button>
+      <div class="controls-hint">
+        <strong>CONTROLS:</strong><br>
+        ← → / A D : Move<br>
+        ↓ / S : Soft Drop<br>
+        ↑ / W : Rotate<br>
+        Space : Hard Drop
+      </div>
+    </div>
+
+    <!-- Friendly Vista Dialog Popup -->
+    <div class="modal-overlay" id="popupModal">
+      <div class="dialog-box">
+        <div class="dialog-header">Windows Information</div>
+        <div class="dialog-content">
+          <div class="dialog-icon" id="popupIcon">🌟</div>
+          <p id="popupMessage">Wonderful game! You did fantastic stacking those blocks. Ready for another round?</p>
+        </div>
+        <div class="dialog-footer">
+          <button class="btn dialog-btn" id="popupBtn">Play Again</button>
+        </div>
       </div>
     </div>
   </div>
@@ -584,4 +627,4 @@ draw();
 </html>
 """
 
-st.components.v1.html(tetris_html, height=650, scrolling=False)
+st.components.v1.html(tetris_html, height=600, scrolling=False)
