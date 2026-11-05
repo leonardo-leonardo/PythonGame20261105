@@ -1,14 +1,16 @@
 import streamlit as st
 
 st.set_page_config(
-    page_title="Windows Vista Aero Tetris", page_icon="🪟", layout="centered"
+    page_title="Windows Vista Aero Tetris - Professional Edition",
+    page_icon="🪟",
+    layout="centered",
 )
 
 st.markdown(
     """
     <style>
     .stApp {
-        background: radial-gradient(circle at center, #cbe3f7 0%, #7caedc 100%);
+        background-color: #000000;
     }
     </style>
     """,
@@ -23,8 +25,8 @@ tetris_html = """
 <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
   body {
-    background: transparent;
-    color: #1e395b;
+    background-color: #000000;
+    color: #d0e4f7;
     font-family: 'Segoe UI', Tahoma, sans-serif;
     display: flex;
     flex-direction: column;
@@ -36,28 +38,29 @@ tetris_html = """
     outline: none;
   }
 
-  /* Authentic Windows Vista Aero Glass Container */
+  /* Professional Dark Windows Vista Aero Glass Container */
   .window {
-    background: linear-gradient(135deg, rgba(245, 250, 255, 0.9) 0%, rgba(210, 232, 252, 0.8) 100%);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 2px solid rgba(255, 255, 255, 0.95);
-    border-radius: 8px;
-    box-shadow: 0 25px 60px rgba(10, 35, 70, 0.5), 
-                inset 0 0 25px rgba(255, 255, 255, 0.8),
-                0 0 0 1px rgba(70, 140, 210, 0.5);
+    background: linear-gradient(135deg, rgba(20, 35, 55, 0.94) 0%, rgba(10, 20, 35, 0.96) 100%);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border: 2px solid rgba(80, 150, 220, 0.5);
+    border-radius: 12px;
+    box-shadow: 0 35px 80px rgba(0, 0, 0, 0.95), 
+                inset 0 0 30px rgba(70, 140, 220, 0.2),
+                0 0 0 1px rgba(120, 180, 240, 0.3);
     width: 480px;
     padding: 24px;
     display: flex;
     gap: 20px;
     position: relative;
+    box-sizing: border-box;
   }
 
   canvas {
-    background-color: #050d1a;
-    border: 3px solid #3b7bb8;
-    border-radius: 4px;
-    box-shadow: inset 0 0 20px rgba(0,0,0,0.95), 0 6px 15px rgba(10,35,70,0.3);
+    background-color: #03070f;
+    border: 3px solid #3b82c4;
+    border-radius: 6px;
+    box-shadow: inset 0 0 25px rgba(0,0,0,0.95), 0 6px 18px rgba(0,0,0,0.6);
   }
 
   .side-panel {
@@ -68,94 +71,96 @@ tetris_html = """
   }
 
   .stats-box {
-    background: linear-gradient(to bottom, #ffffff 0%, #e2effd 100%);
-    border: 1px solid #6fa8df;
-    border-radius: 5px;
+    background: linear-gradient(to bottom, rgba(25, 45, 75, 0.9) 0%, rgba(15, 30, 50, 0.9) 100%);
+    border: 1px solid rgba(70, 140, 210, 0.4);
+    border-radius: 8px;
     padding: 12px;
     text-align: center;
-    box-shadow: inset 0 1px 4px rgba(255,255,255,0.95), 0 4px 10px rgba(10,35,70,0.1);
+    box-shadow: inset 0 1px 4px rgba(255,255,255,0.15), 0 4px 12px rgba(0,0,0,0.4);
     margin-bottom: 14px;
   }
 
   .stats-box h3 {
     font-size: 10px;
-    color: #1a5296;
+    color: #7abaff;
     margin: 0 0 6px 0;
     font-weight: 700;
     letter-spacing: 1px;
+    text-shadow: 0 0 6px rgba(122, 186, 255, 0.4);
   }
 
   .stats-box p {
     font-size: 20px;
     margin: 0;
-    color: #0b2d4f;
+    color: #ffffff;
     font-weight: 700;
-    text-shadow: 0 1px 0 #fff;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.8), 0 0 8px rgba(255,255,255,0.6);
   }
 
   .controls-hint {
     font-size: 9px;
     line-height: 1.5;
-    color: #1c4b78;
-    border-top: 1px solid rgba(111, 168, 223, 0.4);
+    color: #9abfdc;
+    border-top: 1px solid rgba(70, 140, 210, 0.3);
     padding-top: 10px;
     font-weight: 600;
+    text-shadow: 0 1px 1px rgba(0,0,0,0.5);
   }
 
-  /* Professional Windows Vista Aero Multi-Stop Gradient Button */
+  /* Exact Classic Aero Pill Button Matching Provided Reference */
   .btn {
     background: linear-gradient(to bottom, 
-      rgba(255, 255, 255, 0.98) 0%, 
-      rgba(235, 245, 255, 0.92) 42%, 
-      rgba(190, 222, 250, 0.88) 49%, 
-      rgba(140, 192, 240, 0.92) 50.1%, 
-      rgba(175, 218, 250, 0.96) 100%
+      rgba(255, 255, 255, 0.95) 0%, 
+      rgba(255, 255, 255, 0.75) 49%, 
+      rgba(130, 185, 240, 0.9) 50%, 
+      rgba(80, 145, 215, 0.95) 100%
     );
-    border: 1px solid #3c7fb1;
-    border-radius: 5px;
+    border: 1px solid rgba(40, 100, 170, 0.8);
+    border-radius: 18px;
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 1), 
-                inset 0 -1px 2px rgba(0, 50, 100, 0.2),
-                0 3px 8px rgba(10, 35, 70, 0.2);
-    color: #1e395b;
+                inset 0 -1px 2px rgba(0, 40, 90, 0.3),
+                0 4px 12px rgba(0, 0, 0, 0.4);
+    color: #102a45;
     font-family: 'Segoe UI', Tahoma, sans-serif;
     font-size: 11px;
-    font-weight: 600;
-    padding: 10px;
+    font-weight: 700;
+    padding: 11px 16px;
     cursor: pointer;
     width: 100%;
-    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.9);
-    transition: all 0.12s ease;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.9), 0 0 6px rgba(255, 255, 255, 0.8);
+    transition: all 0.15s ease;
+    text-align: center;
   }
 
   .btn:hover {
     background: linear-gradient(to bottom, 
       rgba(255, 255, 255, 1) 0%, 
-      rgba(245, 250, 255, 0.95) 42%, 
-      rgba(210, 238, 255, 0.92) 49%, 
-      rgba(170, 215, 255, 0.96) 50.1%, 
-      rgba(195, 230, 255, 1) 100%
+      rgba(240, 248, 255, 0.9) 49%, 
+      rgba(150, 205, 255, 0.95) 50%, 
+      rgba(100, 165, 235, 1) 100%
     );
-    border-color: #2c628d;
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 1), 
-                inset 0 -1px 3px rgba(0, 60, 120, 0.3),
-                0 4px 12px rgba(10, 35, 70, 0.3);
+                inset 0 -1px 3px rgba(0, 60, 130, 0.4),
+                0 6px 16px rgba(0, 0, 0, 0.5);
+    border-color: #3b82c4;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 1), 0 0 10px rgba(255, 255, 255, 1);
   }
 
   .btn:active {
     background: linear-gradient(to bottom, 
-      rgba(130, 185, 230, 1) 0%, 
-      rgba(165, 210, 245, 1) 50%, 
-      rgba(210, 235, 255, 1) 100%
+      rgba(80, 145, 215, 1) 0%, 
+      rgba(130, 185, 240, 1) 50%, 
+      rgba(255, 255, 255, 0.9) 100%
     );
-    box-shadow: inset 0 2px 5px rgba(10, 40, 80, 0.4);
+    box-shadow: inset 0 2px 6px rgba(0, 30, 70, 0.5);
   }
 
-  /* Windows Vista Dialog Popup Modal */
+  /* Professional Dark Vista Dialog Popup Modal */
   .modal-overlay {
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(10, 35, 70, 0.45);
-    backdrop-filter: blur(5px);
+    background: rgba(0, 10, 25, 0.7);
+    backdrop-filter: blur(6px);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -163,7 +168,7 @@ tetris_html = """
     visibility: hidden;
     opacity: 0;
     transition: 0.25s ease-in-out;
-    border-radius: 8px;
+    border-radius: 12px;
   }
 
   .modal-overlay.active {
@@ -172,32 +177,33 @@ tetris_html = """
   }
 
   .dialog-box {
-    background: linear-gradient(135deg, #f5fbff 0%, #d5eafc 100%);
+    background: linear-gradient(135deg, rgba(25, 45, 75, 0.98) 0%, rgba(12, 24, 42, 0.98) 100%);
     border: 2px solid #4a8ec9;
-    border-radius: 8px;
+    border-radius: 10px;
     width: 310px;
-    box-shadow: 0 25px 50px rgba(5,25,55,0.6), inset 0 1px 0 rgba(255,255,255,0.95);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.8), inset 0 1px 0 rgba(255,255,255,0.3);
     overflow: hidden;
     text-align: center;
   }
 
   .dialog-header {
-    background: linear-gradient(to bottom, #e4f2ff 0%, #81bbf2 100%);
-    color: #0b2d4f;
+    background: linear-gradient(to bottom, #4a90e2 0%, #1c5baf 100%);
+    color: white;
     padding: 10px 14px;
     font-size: 11px;
     font-weight: 700;
     text-align: left;
-    text-shadow: 0 1px 0 rgba(255,255,255,0.9);
+    text-shadow: 0 1px 2px rgba(0,0,0,0.6);
     border-bottom: 1px solid #5fa9ed;
   }
 
   .dialog-content {
     padding: 22px 16px;
     font-size: 12px;
-    color: #0b2d4f;
+    color: #e0f0ff;
     line-height: 1.6;
     font-weight: 600;
+    text-shadow: 0 0 6px rgba(224, 240, 255, 0.4);
   }
 
   .dialog-icon {
@@ -207,8 +213,8 @@ tetris_html = """
 
   .dialog-footer {
     padding: 14px;
-    background: #c5def7;
-    border-top: 1px solid #9fcbf5;
+    background: rgba(10, 20, 35, 0.9);
+    border-top: 1px solid rgba(70, 140, 210, 0.3);
     display: flex;
     justify-content: center;
   }
@@ -337,6 +343,23 @@ function createPiece(type) {
     }
 }
 
+// 7-Bag Randomizer for balanced and regular block distribution
+let pieceBag = [];
+function shuffle(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+}
+
+function nextPieceType() {
+    if (pieceBag.length === 0) {
+        pieceBag = shuffle(['T', 'O', 'L', 'J', 'I', 'S', 'Z']);
+    }
+    return pieceBag.pop();
+}
+
 function drawMatrix(matrix, offset) {
     matrix.forEach((row, y) => {
         row.forEach((value, x) => {
@@ -352,7 +375,7 @@ function drawMatrix(matrix, offset) {
 }
 
 function draw() {
-    context.fillStyle = '#050d1a';
+    context.fillStyle = '#03070f';
     context.fillRect(0, 0, canvas.width, canvas.height);
     drawMatrix(arena, {x: 0, y: 0});
     drawMatrix(player.matrix, player.pos);
@@ -401,8 +424,7 @@ function playerMove(dir) {
 }
 
 function playerReset() {
-    const pieces = 'TJLOSZI';
-    player.matrix = createPiece(pieces[Math.floor(pieces.length * Math.random())]);
+    player.matrix = createPiece(nextPieceType());
     player.pos.y = 0;
     player.pos.x = (arena[0].length / 2 | 0) - (player.matrix[0].length / 2 | 0);
     if (collide(arena, player)) {
@@ -421,6 +443,7 @@ function showPopup(title, msg) {
 function hidePopup() {
     document.getElementById('popupModal').classList.remove('active');
     arena.forEach(row => row.fill(0));
+    pieceBag = [];
     player.score = 0;
     player.level = 1;
     updateScore();
@@ -457,7 +480,7 @@ function collide(arena, player) {
 function arenaSweep() {
     let rowCount = 1;
     outer: for (let y = arena.length - 1; y > 0; --y) {
-        for (let x = 0; x < arena[y].length; ++x) {
+        for (let x = 0; x < arena[y].length; x++) {
             if (arena[y][x] === 0) {
                 continue outer;
             }
@@ -473,7 +496,7 @@ function arenaSweep() {
 }
 
 let dropCounter = 0;
-let dropInterval = 1000;
+let dropInterval = 900; // Normal starting speed
 let lastTime = 0;
 let isRunning = false;
 
@@ -492,10 +515,10 @@ function update(time = 0) {
 function updateScore() {
     document.getElementById('score').innerText = player.score;
     document.getElementById('level').innerText = player.level;
-    dropInterval = Math.max(120, 1000 - (player.level - 1) * 70);
+    dropInterval = Math.max(180, 900 - (player.level - 1) * 60);
 }
 
-/* Ensure window and canvas retain focus and prevent page scrolling on all game keys */
+/* Ensure focus and prevent browser scrolling on all game keys */
 window.addEventListener('click', () => {
     window.focus();
     canvas.focus();
