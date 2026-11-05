@@ -1,14 +1,14 @@
 import streamlit as st
 
 st.set_page_config(
-    page_title="Windows Vista Retro Tetris", page_icon="🪟", layout="centered"
+    page_title="Windows Vista Aero Tetris", page_icon="🪟", layout="centered"
 )
 
 st.markdown(
     """
     <style>
     .stApp {
-        background: radial-gradient(circle at center, #cbe3f7 0%, #89bfe8 100%);
+        background: radial-gradient(circle at center, #cbe3f7 0%, #7caedc 100%);
     }
     </style>
     """,
@@ -24,7 +24,7 @@ tetris_html = """
 <style>
   body {
     background: transparent;
-    color: #1c3d5a;
+    color: #0b2d4f;
     font-family: 'Segoe UI', Tahoma, sans-serif;
     display: flex;
     flex-direction: column;
@@ -35,78 +35,28 @@ tetris_html = """
     overflow: hidden;
   }
 
-  /* Windows Vista Aero Glass Window */
+  /* Deep Windows Vista Aero Glass Container */
   .window {
-    background: rgba(235, 245, 255, 0.85);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    border: 2px solid rgba(255, 255, 255, 0.9);
-    border-top: 2px solid rgba(255, 255, 255, 1);
-    border-radius: 10px;
-    box-shadow: 0 20px 50px rgba(15, 50, 90, 0.4), 
-                inset 0 0 15px rgba(255, 255, 255, 0.7),
-                0 0 0 1px rgba(50, 120, 190, 0.4);
+    background: linear-gradient(135deg, rgba(245, 250, 255, 0.85) 0%, rgba(215, 235, 252, 0.75) 100%);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 2px solid rgba(255, 255, 255, 0.95);
+    border-radius: 14px;
+    box-shadow: 0 25px 60px rgba(10, 35, 70, 0.5), 
+                inset 0 0 25px rgba(255, 255, 255, 0.8),
+                0 0 0 1px rgba(70, 140, 210, 0.5);
     width: 480px;
-    overflow: hidden;
+    padding: 24px;
+    display: flex;
+    gap: 20px;
     position: relative;
   }
 
-  .window-header {
-    background: linear-gradient(to bottom, #e4f2ff 0%, #b2d7f7 49%, #81bbf2 50%, #63a4ec 100%);
-    padding: 10px 14px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid #4a8ec9;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
-    color: #0b2d4f;
-    font-weight: 700;
-    font-size: 13px;
-    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9);
-  }
-
-  .window-title {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .window-controls {
-    display: flex;
-    gap: 6px;
-  }
-
-  .win-btn {
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    border: 1px solid rgba(255,255,255,0.8);
-    background: linear-gradient(to bottom, #ff7b72 0%, #d32f2f 100%);
-    cursor: pointer;
-    font-size: 10px;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.3);
-  }
-  .win-btn.min { background: linear-gradient(to bottom, #ffeb3b 0%, #fbc02d 100%); color: #333; }
-  .win-btn.max { background: linear-gradient(to bottom, #81c784 0%, #388e3c 100%); }
-
-  .window-body {
-    padding: 20px;
-    display: flex;
-    gap: 20px;
-    background: linear-gradient(135deg, rgba(255,255,255,0.6) 0%, rgba(210,232,252,0.5) 100%);
-  }
-
   canvas {
-    background-color: #081424;
-    border: 3px solid #4889c9;
-    border-radius: 6px;
-    box-shadow: inset 0 0 15px rgba(0,0,0,0.9), 0 4px 10px rgba(15,50,90,0.2);
+    background-color: #050d1a;
+    border: 3px solid #3b7bb8;
+    border-radius: 8px;
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.95), 0 6px 15px rgba(10,35,70,0.3);
   }
 
   .side-panel {
@@ -117,25 +67,25 @@ tetris_html = """
   }
 
   .stats-box {
-    background: linear-gradient(to bottom, #ffffff 0%, #e2effd 100%);
-    border: 1px solid #7cb5ec;
-    border-radius: 8px;
-    padding: 10px;
+    background: linear-gradient(to bottom, #ffffff 0%, #d8ebfd 100%);
+    border: 1px solid #6fa8df;
+    border-radius: 10px;
+    padding: 12px;
     text-align: center;
-    box-shadow: inset 0 1px 3px rgba(255,255,255,0.9), 0 3px 6px rgba(15,50,90,0.08);
-    margin-bottom: 12px;
+    box-shadow: inset 0 1px 4px rgba(255,255,255,0.95), 0 4px 10px rgba(10,35,70,0.1);
+    margin-bottom: 14px;
   }
 
   .stats-box h3 {
     font-size: 10px;
-    color: #185a9d;
+    color: #1a5296;
     margin: 0 0 6px 0;
     font-weight: 700;
-    letter-spacing: 0.8px;
+    letter-spacing: 1px;
   }
 
   .stats-box p {
-    font-size: 18px;
+    font-size: 20px;
     margin: 0;
     color: #0b2d4f;
     font-weight: 700;
@@ -145,46 +95,50 @@ tetris_html = """
   .controls-hint {
     font-size: 9px;
     line-height: 1.5;
-    color: #2c5982;
-    border-top: 1px solid #b8d8f7;
+    color: #1c4b78;
+    border-top: 1px solid rgba(111, 168, 223, 0.4);
     padding-top: 10px;
     font-weight: 600;
   }
 
-  /* Windows Vista Glassy Button */
+  /* True Smooth Windows Aero Glass Pill Button */
   .btn {
-    background: linear-gradient(to bottom, #ffffff 0%, #d3e8fc 50%, #9bc6f3 51%, #5fa9ed 100%);
+    background: linear-gradient(to bottom, rgba(255,255,255,0.95) 0%, rgba(210,235,255,0.85) 49%, rgba(140,195,245,0.9) 50%, rgba(90,160,230,0.95) 100%);
+    border: 1px solid rgba(30, 90, 150, 0.7);
+    border-radius: 20px;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,1), 
+                inset 0 -1px 2px rgba(0,60,130,0.3),
+                0 4px 12px rgba(10, 40, 80, 0.25);
     color: #0b2d4f;
-    border: 1px solid #4382c4;
-    padding: 10px 14px;
     font-family: 'Segoe UI', Tahoma, sans-serif;
     font-size: 11px;
-    cursor: pointer;
     font-weight: 700;
-    border-radius: 16px;
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.9), 0 3px 6px rgba(15,50,90,0.2);
+    padding: 12px;
+    cursor: pointer;
     width: 100%;
-    text-shadow: 0 1px 0 rgba(255,255,255,0.8);
+    text-shadow: 0 1px 0 rgba(255,255,255,0.9);
     transition: all 0.15s ease;
   }
 
   .btn:hover {
-    background: linear-gradient(to bottom, #ffffff 0%, #e3f0fe 50%, #b2d7f8 51%, #79b8f2 100%);
-    box-shadow: inset 0 1px 0 rgba(255,255,255,1), 0 4px 8px rgba(15,50,90,0.3);
-    border-color: #286bb0;
+    background: linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(230,245,255,0.95) 49%, rgba(165,215,255,1) 50%, rgba(115,185,250,1) 100%);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,1), 
+                inset 0 -1px 3px rgba(0,80,160,0.4),
+                0 6px 18px rgba(10, 40, 80, 0.35);
+    border-color: #1a6cb0;
   }
 
   .btn:active {
-    background: linear-gradient(to bottom, #5fa9ed 0%, #9bc6f3 50%, #d3e8fc 100%);
-    box-shadow: inset 0 2px 4px rgba(15,50,90,0.4);
+    background: linear-gradient(to bottom, rgba(80,150,220,1) 0%, rgba(120,180,240,1) 50%, rgba(200,230,255,1) 100%);
+    box-shadow: inset 0 2px 6px rgba(5,30,70,0.5);
   }
 
-  /* Vista Dialog Popup Modal */
+  /* Friendly Vista Dialog Popup Modal */
   .modal-overlay {
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(15, 45, 80, 0.4);
-    backdrop-filter: blur(4px);
+    background: rgba(10, 35, 70, 0.45);
+    backdrop-filter: blur(5px);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -192,6 +146,7 @@ tetris_html = """
     visibility: hidden;
     opacity: 0;
     transition: 0.25s ease-in-out;
+    border-radius: 14px;
   }
 
   .modal-overlay.active {
@@ -200,11 +155,11 @@ tetris_html = """
   }
 
   .dialog-box {
-    background: linear-gradient(135deg, #f3f9ff 0%, #d5eafc 100%);
+    background: linear-gradient(135deg, #f5fbff 0%, #d5eafc 100%);
     border: 2px solid #4a8ec9;
-    border-radius: 10px;
-    width: 300px;
-    box-shadow: 0 20px 45px rgba(10,35,70,0.5), inset 0 1px 0 rgba(255,255,255,0.9);
+    border-radius: 12px;
+    width: 310px;
+    box-shadow: 0 25px 50px rgba(5,25,55,0.6), inset 0 1px 0 rgba(255,255,255,0.95);
     overflow: hidden;
     text-align: center;
   }
@@ -212,16 +167,16 @@ tetris_html = """
   .dialog-header {
     background: linear-gradient(to bottom, #e4f2ff 0%, #81bbf2 100%);
     color: #0b2d4f;
-    padding: 8px 12px;
+    padding: 10px 14px;
     font-size: 11px;
     font-weight: 700;
     text-align: left;
-    text-shadow: 0 1px 0 rgba(255,255,255,0.8);
+    text-shadow: 0 1px 0 rgba(255,255,255,0.9);
     border-bottom: 1px solid #5fa9ed;
   }
 
   .dialog-content {
-    padding: 20px 15px;
+    padding: 22px 16px;
     font-size: 12px;
     color: #0b2d4f;
     line-height: 1.6;
@@ -229,12 +184,12 @@ tetris_html = """
   }
 
   .dialog-icon {
-    font-size: 28px;
+    font-size: 30px;
     margin-bottom: 10px;
   }
 
   .dialog-footer {
-    padding: 12px;
+    padding: 14px;
     background: #c5def7;
     border-top: 1px solid #9fcbf5;
     display: flex;
@@ -242,45 +197,32 @@ tetris_html = """
   }
 
   .dialog-btn {
-    width: 120px;
+    width: 130px;
   }
 </style>
 </head>
 <body>
 
 <div class="window">
-  <div class="window-header">
-    <div class="window-title">
-      <span>🪟</span> Tetris - Windows Aero Edition
-    </div>
-    <div class="window-controls">
-      <div class="win-btn min">_</div>
-      <div class="win-btn max">□</div>
-      <div class="win-btn">×</div>
-    </div>
-  </div>
-
-  <div class="window-body">
-    <canvas id="tetris" width="280" height="476"></canvas>
-    <div class="side-panel">
-      <div>
-        <div class="stats-box">
-          <h3>SCORE</h3>
-          <p id="score">0</p>
-        </div>
-        <div class="stats-box">
-          <h3>LEVEL</h3>
-          <p id="level">1</p>
-        </div>
-        <button class="btn" id="startBtn">START</button>
+  <canvas id="tetris" width="280" height="476"></canvas>
+  <div class="side-panel">
+    <div>
+      <div class="stats-box">
+        <h3>SCORE</h3>
+        <p id="score">0</p>
       </div>
-      <div class="controls-hint">
-        <strong>CONTROLS:</strong><br>
-        ← → / A D : Move<br>
-        ↓ / S : Soft Drop<br>
-        ↑ / W : Rotate<br>
-        Space : Hard Drop
+      <div class="stats-box">
+        <h3>LEVEL</h3>
+        <p id="level">1</p>
       </div>
+      <button class="btn" id="startBtn">START</button>
+    </div>
+    <div class="controls-hint">
+      <strong>CONTROLS:</strong><br>
+      ← → / A D : Move<br>
+      ↓ / S : Soft Drop<br>
+      ↑ / W : Rotate<br>
+      Space : Hard Drop
     </div>
   </div>
 
@@ -385,7 +327,7 @@ function drawMatrix(matrix, offset) {
                 context.fillStyle = colors[value];
                 context.fillRect(x + offset.x, y + offset.y, 1, 1);
                 context.lineWidth = 0.04;
-                context.strokeStyle = 'rgba(255,255,255,0.8)';
+                context.strokeStyle = 'rgba(255,255,255,0.85)';
                 context.strokeRect(x + offset.x, y + offset.y, 1, 1);
             }
         });
@@ -393,7 +335,7 @@ function drawMatrix(matrix, offset) {
 }
 
 function draw() {
-    context.fillStyle = '#081424';
+    context.fillStyle = '#050d1a';
     context.fillRect(0, 0, canvas.width, canvas.height);
     drawMatrix(arena, {x: 0, y: 0});
     drawMatrix(player.matrix, player.pos);
@@ -509,7 +451,6 @@ function arenaSweep() {
 
         player.score += rowCount * 100 * player.level;
         rowCount *= 2;
-        // Level increases every 500 points
         player.level = Math.floor(player.score / 500) + 1;
     }
 }
@@ -537,8 +478,11 @@ function updateScore() {
     dropInterval = Math.max(120, 1000 - (player.level - 1) * 70);
 }
 
-// Arrow keys and WASD controls support
+/* Prevent browser window scrolling when using arrow keys or WASD */
 document.addEventListener('keydown', event => {
+    if (['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', ' ', 'a', 'd', 'w', 's', 'A', 'D', 'W', 'S'].includes(event.key)) {
+        event.preventDefault();
+    }
     if (!isRunning) return;
     if (event.key === 'ArrowLeft' || event.key === 'a' || event.key === 'A') {
         playerMove(-1);
@@ -593,4 +537,4 @@ draw();
 </html>
 """
 
-st.components.v1.html(tetris_html, height=550, scrolling=False)
+st.components.v1.html(tetris_html, height=540, scrolling=False)
