@@ -84,6 +84,7 @@ tetris_html = """
     margin: 0 0 6px 0;
     font-weight: 700;
     letter-spacing: 1px;
+    text-shadow: 0 0 4px rgba(255, 255, 255, 0.8);
   }
 
   .stats-box p {
@@ -91,7 +92,7 @@ tetris_html = """
     margin: 0;
     color: #0b2d4f;
     font-weight: 700;
-    text-shadow: 0 1px 0 #fff;
+    text-shadow: 0 0 6px rgba(255, 255, 255, 0.9), 0 1px 1px rgba(0, 0, 0, 0.2);
   }
 
   .controls-hint {
@@ -101,9 +102,10 @@ tetris_html = """
     border-top: 1px solid rgba(111, 168, 223, 0.5);
     padding-top: 10px;
     font-weight: 600;
+    text-shadow: 0 0 4px rgba(255, 255, 255, 0.7);
   }
 
-  /* Exact Windows Vista Aero Glossy Capsule Pill Button */
+  /* Exact Windows Vista Aero Glossy Capsule Pill Button with Soft Text Glow */
   .btn {
     background: linear-gradient(to bottom, 
       #ffffff 0%, 
@@ -123,7 +125,7 @@ tetris_html = """
     padding: 11px 16px;
     cursor: pointer;
     width: 100%;
-    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.9);
+    text-shadow: 0 0 6px rgba(255, 255, 255, 0.95), 0 1px 1px rgba(255, 255, 255, 0.8);
     transition: all 0.12s ease;
     text-align: center;
   }
@@ -139,6 +141,7 @@ tetris_html = """
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 1), 
                 inset 0 -1px 3px rgba(0, 60, 120, 0.4),
                 0 4px 8px rgba(0, 0, 0, 0.3);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 1), 0 1px 2px rgba(255, 255, 255, 0.9);
   }
 
   .btn:active {
@@ -188,7 +191,7 @@ tetris_html = """
     font-size: 11px;
     font-weight: 700;
     text-align: left;
-    text-shadow: 0 1px 0 rgba(255,255,255,0.9);
+    text-shadow: 0 0 4px rgba(255, 255, 255, 0.9);
     border-bottom: 1px solid #5fa9ed;
   }
 
@@ -198,6 +201,7 @@ tetris_html = """
     color: #0b2d4f;
     line-height: 1.6;
     font-weight: 600;
+    text-shadow: 0 0 4px rgba(255, 255, 255, 0.8);
   }
 
   .dialog-icon {
@@ -580,4 +584,4 @@ draw();
 </html>
 """
 
-st.components.v1.html(tetris_html, height=540, scrolling=False)
+st.components.v1.html(tetris_html, height=650, scrolling=False)
