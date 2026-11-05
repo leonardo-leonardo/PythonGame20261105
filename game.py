@@ -24,7 +24,7 @@ tetris_html = """
 <style>
   body {
     background: transparent;
-    color: #0b2d4f;
+    color: #1e395b;
     font-family: 'Segoe UI', Tahoma, sans-serif;
     display: flex;
     flex-direction: column;
@@ -33,15 +33,16 @@ tetris_html = """
     height: 100vh;
     margin: 0;
     overflow: hidden;
+    outline: none;
   }
 
-  /* Deep Windows Vista Aero Glass Container */
+  /* Authentic Windows Vista Aero Glass Container */
   .window {
-    background: linear-gradient(135deg, rgba(245, 250, 255, 0.85) 0%, rgba(215, 235, 252, 0.75) 100%);
+    background: linear-gradient(135deg, rgba(245, 250, 255, 0.9) 0%, rgba(210, 232, 252, 0.8) 100%);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border: 2px solid rgba(255, 255, 255, 0.95);
-    border-radius: 14px;
+    border-radius: 8px;
     box-shadow: 0 25px 60px rgba(10, 35, 70, 0.5), 
                 inset 0 0 25px rgba(255, 255, 255, 0.8),
                 0 0 0 1px rgba(70, 140, 210, 0.5);
@@ -55,7 +56,7 @@ tetris_html = """
   canvas {
     background-color: #050d1a;
     border: 3px solid #3b7bb8;
-    border-radius: 8px;
+    border-radius: 4px;
     box-shadow: inset 0 0 20px rgba(0,0,0,0.95), 0 6px 15px rgba(10,35,70,0.3);
   }
 
@@ -67,9 +68,9 @@ tetris_html = """
   }
 
   .stats-box {
-    background: linear-gradient(to bottom, #ffffff 0%, #d8ebfd 100%);
+    background: linear-gradient(to bottom, #ffffff 0%, #e2effd 100%);
     border: 1px solid #6fa8df;
-    border-radius: 10px;
+    border-radius: 5px;
     padding: 12px;
     text-align: center;
     box-shadow: inset 0 1px 4px rgba(255,255,255,0.95), 0 4px 10px rgba(10,35,70,0.1);
@@ -101,39 +102,55 @@ tetris_html = """
     font-weight: 600;
   }
 
-  /* True Smooth Windows Aero Glass Pill Button */
+  /* Professional Windows Vista Aero Multi-Stop Gradient Button */
   .btn {
-    background: linear-gradient(to bottom, rgba(255,255,255,0.95) 0%, rgba(210,235,255,0.85) 49%, rgba(140,195,245,0.9) 50%, rgba(90,160,230,0.95) 100%);
-    border: 1px solid rgba(30, 90, 150, 0.7);
-    border-radius: 20px;
-    box-shadow: inset 0 1px 0 rgba(255,255,255,1), 
-                inset 0 -1px 2px rgba(0,60,130,0.3),
-                0 4px 12px rgba(10, 40, 80, 0.25);
-    color: #0b2d4f;
+    background: linear-gradient(to bottom, 
+      rgba(255, 255, 255, 0.98) 0%, 
+      rgba(235, 245, 255, 0.92) 42%, 
+      rgba(190, 222, 250, 0.88) 49%, 
+      rgba(140, 192, 240, 0.92) 50.1%, 
+      rgba(175, 218, 250, 0.96) 100%
+    );
+    border: 1px solid #3c7fb1;
+    border-radius: 5px;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 1), 
+                inset 0 -1px 2px rgba(0, 50, 100, 0.2),
+                0 3px 8px rgba(10, 35, 70, 0.2);
+    color: #1e395b;
     font-family: 'Segoe UI', Tahoma, sans-serif;
     font-size: 11px;
-    font-weight: 700;
-    padding: 12px;
+    font-weight: 600;
+    padding: 10px;
     cursor: pointer;
     width: 100%;
-    text-shadow: 0 1px 0 rgba(255,255,255,0.9);
-    transition: all 0.15s ease;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.9);
+    transition: all 0.12s ease;
   }
 
   .btn:hover {
-    background: linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(230,245,255,0.95) 49%, rgba(165,215,255,1) 50%, rgba(115,185,250,1) 100%);
-    box-shadow: inset 0 1px 0 rgba(255,255,255,1), 
-                inset 0 -1px 3px rgba(0,80,160,0.4),
-                0 6px 18px rgba(10, 40, 80, 0.35);
-    border-color: #1a6cb0;
+    background: linear-gradient(to bottom, 
+      rgba(255, 255, 255, 1) 0%, 
+      rgba(245, 250, 255, 0.95) 42%, 
+      rgba(210, 238, 255, 0.92) 49%, 
+      rgba(170, 215, 255, 0.96) 50.1%, 
+      rgba(195, 230, 255, 1) 100%
+    );
+    border-color: #2c628d;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 1), 
+                inset 0 -1px 3px rgba(0, 60, 120, 0.3),
+                0 4px 12px rgba(10, 35, 70, 0.3);
   }
 
   .btn:active {
-    background: linear-gradient(to bottom, rgba(80,150,220,1) 0%, rgba(120,180,240,1) 50%, rgba(200,230,255,1) 100%);
-    box-shadow: inset 0 2px 6px rgba(5,30,70,0.5);
+    background: linear-gradient(to bottom, 
+      rgba(130, 185, 230, 1) 0%, 
+      rgba(165, 210, 245, 1) 50%, 
+      rgba(210, 235, 255, 1) 100%
+    );
+    box-shadow: inset 0 2px 5px rgba(10, 40, 80, 0.4);
   }
 
-  /* Friendly Vista Dialog Popup Modal */
+  /* Windows Vista Dialog Popup Modal */
   .modal-overlay {
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
@@ -146,7 +163,7 @@ tetris_html = """
     visibility: hidden;
     opacity: 0;
     transition: 0.25s ease-in-out;
-    border-radius: 14px;
+    border-radius: 8px;
   }
 
   .modal-overlay.active {
@@ -157,7 +174,7 @@ tetris_html = """
   .dialog-box {
     background: linear-gradient(135deg, #f5fbff 0%, #d5eafc 100%);
     border: 2px solid #4a8ec9;
-    border-radius: 12px;
+    border-radius: 8px;
     width: 310px;
     box-shadow: 0 25px 50px rgba(5,25,55,0.6), inset 0 1px 0 rgba(255,255,255,0.95);
     overflow: hidden;
@@ -204,7 +221,7 @@ tetris_html = """
 <body>
 
 <div class="window">
-  <canvas id="tetris" width="280" height="476"></canvas>
+  <canvas id="tetris" width="280" height="476" tabindex="1"></canvas>
   <div class="side-panel">
     <div>
       <div class="stats-box">
@@ -478,9 +495,15 @@ function updateScore() {
     dropInterval = Math.max(120, 1000 - (player.level - 1) * 70);
 }
 
-/* Prevent browser window scrolling when using arrow keys or WASD */
+/* Ensure window and canvas retain focus and prevent page scrolling on all game keys */
+window.addEventListener('click', () => {
+    window.focus();
+    canvas.focus();
+});
+
 document.addEventListener('keydown', event => {
-    if (['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', ' ', 'a', 'd', 'w', 's', 'A', 'D', 'W', 'S'].includes(event.key)) {
+    const gameKeys = ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', ' ', 'a', 'd', 'w', 's', 'A', 'D', 'W', 'S'];
+    if (gameKeys.includes(event.key)) {
         event.preventDefault();
     }
     if (!isRunning) return;
@@ -507,6 +530,7 @@ document.addEventListener('keydown', event => {
 
 const startBtn = document.getElementById('startBtn');
 startBtn.addEventListener('click', () => {
+    canvas.focus();
     if (!isRunning) {
         hidePopup();
         isRunning = true;
@@ -523,6 +547,7 @@ startBtn.addEventListener('click', () => {
 });
 
 document.getElementById('popupBtn').addEventListener('click', () => {
+    canvas.focus();
     hidePopup();
     isRunning = true;
     playerReset();
@@ -531,6 +556,7 @@ document.getElementById('popupBtn').addEventListener('click', () => {
     startBtn.innerText = "PAUSE";
 });
 
+canvas.focus();
 draw();
 </script>
 </body>
