@@ -11,7 +11,7 @@ st.markdown(
         background-color: #000000;
         overflow: hidden;
     }
-    /* Disable main page scrolling */
+    /* 禁止主頁面捲動 */
     html, body, [data-testid="stAppViewContainer"], [data-testid="stVerticalBlock"] {
         overflow: hidden !important;
         height: 100% !important;
@@ -45,7 +45,7 @@ tetris_html = """
     -webkit-font-smoothing: antialiased;
   }
 
-  /* Authentic Windows Vista Aero Glass Window Frame - Compact & Perfectly Fitted */
+  /* Windows Vista Aero 玻璃視窗外框 */
   .window {
     background: linear-gradient(135deg, rgba(230, 242, 255, 0.94) 0%, rgba(195, 222, 250, 0.88) 100%);
     backdrop-filter: blur(25px);
@@ -80,7 +80,6 @@ tetris_html = """
     gap: 6px;
   }
 
-  /* Authentic Windows Vista Rectangular Titlebar Controls */
   .window-controls {
     display: flex;
     gap: 3px;
@@ -135,31 +134,36 @@ tetris_html = """
     width: 150px;
   }
 
-  /* Authentic Windows Vista GroupBox Style */
+  /* 極致 Windows Vista Aero 玻璃質感計分/等級面板 */
   .vista-groupbox {
-    border: 1px solid #8ab4df;
-    border-radius: 4px;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.92) 0%, rgba(225, 240, 255, 0.8) 48%, rgba(195, 222, 250, 0.85) 49%, rgba(210, 232, 252, 0.92) 100%);
+    border: 1px solid #3c7fb1;
+    border-radius: 6px;
     padding: 8px 10px;
-    background: rgba(255, 255, 255, 0.5);
-    box-shadow: inset 0 1px 3px rgba(255,255,255,0.8);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 1), 
+                inset 0 -1px 2px rgba(0, 50, 100, 0.15),
+                0 3px 6px rgba(10, 35, 70, 0.15);
     margin-bottom: 10px;
     position: relative;
   }
 
   .vista-groupbox legend {
     font-size: 9.5px;
-    font-weight: 600;
+    font-weight: 700;
     color: #1a4d80;
-    padding: 0 4px;
+    padding: 0;
     margin-bottom: 2px;
+    letter-spacing: 0.5px;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.9);
   }
 
   .stat-value {
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 700;
-    color: #0b2545;
+    color: #0b2d4f;
     text-align: center;
     margin: 0;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.9);
   }
 
   .controls-hint {
@@ -171,7 +175,7 @@ tetris_html = """
     font-weight: 400;
   }
 
-  /* Authentic Windows Vista Glossy Button */
+  /* Windows Vista Aero 漸層玻璃按鈕 */
   .vista-btn {
     background: linear-gradient(to bottom, #ffffff 0%, #f4f9ff 45%, #d4e7fc 50%, #9bc6f3 100%);
     border: 1px solid #3c7fb1;
@@ -203,7 +207,7 @@ tetris_html = """
     box-shadow: inset 0 2px 4px rgba(10, 40, 80, 0.3);
   }
 
-  /* Windows Vista Dialog Popup Modal */
+  /* Windows Vista 彈出對話視窗 */
   .modal-overlay {
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
@@ -285,7 +289,6 @@ tetris_html = """
   </div>
 
   <div class="window-body">
-    <!-- Compacted scale 24 for canvas to fit comfortably without scrolling -->
     <canvas id="tetris" width="240" height="408" tabindex="1"></canvas>
     <div class="side-panel">
       <div>
@@ -308,7 +311,7 @@ tetris_html = """
       </div>
     </div>
 
-    <!-- Authentic Vista Dialog Popup -->
+    <!-- Vista 彈出對話框 -->
     <div class="modal-overlay" id="popupModal">
       <div class="dialog-box">
         <div class="dialog-header">Windows Information</div>
@@ -340,13 +343,13 @@ const player = {
 
 const colors = [
     null,
-    '#ff4d4f', // I - Vibrant Red
-    '#1890ff', // J - Vivid Blue
-    '#fa8c16', // L - Warm Orange
-    '#722ed1', // O - Purple
-    '#52c41a', // S - Bright Green
-    '#fadb14', // T - Sunny Yellow
-    '#13c2c2', // Z - Cyan
+    '#ff4d4f', // I - 紅色
+    '#1890ff', // J - 藍色
+    '#fa8c16', // L - 橙色
+    '#722ed1', // O - 紫色
+    '#52c41a', // S - 綠色
+    '#fadb14', // T - 黃色
+    '#13c2c2', // Z - 青色
 ];
 
 function createMatrix(w, h) {
@@ -403,7 +406,7 @@ function createPiece(type) {
     }
 }
 
-// 7-Bag Randomizer for regular and balanced block distribution
+// 7-Bag 隨機發牌器
 let pieceBag = [];
 function shuffle(array) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -578,7 +581,6 @@ function updateScore() {
     dropInterval = Math.max(180, 900 - (player.level - 1) * 60);
 }
 
-/* Ensure focus and prevent browser scrolling on all game keys */
 window.addEventListener('click', () => {
     window.focus();
     canvas.focus();
