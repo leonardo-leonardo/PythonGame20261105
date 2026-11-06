@@ -11,7 +11,7 @@ st.markdown(
         background-color: #000000;
         overflow: hidden;
     }
-    /* Prevent main page scrolling */
+    /* 防止主頁面捲動 */
     html, body, [data-testid="stAppViewContainer"], [data-testid="stVerticalBlock"] {
         overflow: hidden !important;
         height: 100% !important;
@@ -47,7 +47,7 @@ tetris_html = """
     touch-action: manipulation;
   }
 
-  /* Windows Vista Aero Glass Window Frame */
+  /* Windows Vista Aero 玻璃視窗外框 */
   .window {
     background: linear-gradient(135deg, rgba(230, 242, 255, 0.94) 0%, rgba(195, 222, 250, 0.88) 100%);
     backdrop-filter: blur(25px);
@@ -138,7 +138,7 @@ tetris_html = """
     width: 170px;
   }
 
-  /* Slightly Larger Score and Level Vista Panels */
+  /* 稍微加大且精緻的分數/等級面板 */
   .vista-groupbox {
     background: linear-gradient(to bottom, rgba(255, 255, 255, 0.95) 0%, rgba(230, 245, 255, 0.88) 48%, rgba(200, 228, 252, 0.9) 49%, rgba(215, 238, 255, 0.96) 100%);
     border: 1px solid #3c7fb1;
@@ -179,7 +179,7 @@ tetris_html = """
     font-weight: 400;
   }
 
-  /* Playful Happy Start/Stop & Help Buttons */
+  /* Windows Vista 漸層按鈕 */
   .vista-btn {
     background: linear-gradient(to bottom, #ffffff 0%, #f4f9ff 45%, #d4e7fc 50%, #9bc6f3 100%);
     border: 1px solid #3c7fb1;
@@ -212,7 +212,7 @@ tetris_html = """
     box-shadow: inset 0 2px 4px rgba(10, 40, 80, 0.3);
   }
 
-  /* Mobile Touch Controls Bar with Borderless Aero Spheres & Deep Click Depth */
+  /* 行動裝置觸控板：移除白色邊框、增添極佳點擊下陷深度感 */
   .mobile-touch-pad {
     display: none;
     width: 100%;
@@ -222,7 +222,6 @@ tetris_html = """
     padding: 4px 0;
   }
 
-  /* Mid-2000s Vista FULL Aero Glossy Circular Buttons (No white outline, deep click depth) */
   .aero-circle-btn {
     width: 52px;
     height: 52px;
@@ -262,7 +261,7 @@ tetris_html = """
     gap: 10px;
   }
 
-  /* Windows 7 Pulse Animation for Continue Button */
+  /* Windows 7 風格脈衝動畫 (Windows 7 Pulse Animation) */
   @keyframes win7Pulse {
     0% {
       box-shadow: 0 0 0 0 rgba(74, 144, 226, 0.7), inset 0 1px 0 rgba(255,255,255,1);
@@ -279,7 +278,7 @@ tetris_html = """
     animation: win7Pulse 1.8s infinite;
   }
 
-  /* Vista Dialog Popup Modal */
+  /* Vista 彈出對話框 */
   .modal-overlay {
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
@@ -347,7 +346,7 @@ tetris_html = """
     width: 120px;
   }
 
-  /* Auto-detect mobile or touch screens and adjust layout */
+  /* 手機版自動適應切換 */
   @media (max-width: 768px), (pointer: coarse) {
     .window {
       width: 360px;
@@ -421,7 +420,7 @@ tetris_html = """
       </div>
     </div>
 
-    <!-- Vista Dialog Popup / Modal -->
+    <!-- Vista 彈出對話框 -->
     <div class="modal-overlay" id="popupModal">
       <div class="dialog-box">
         <div class="dialog-header" id="dialogTitle">Windows Information</div>
@@ -436,7 +435,7 @@ tetris_html = """
     </div>
   </div>
 
-  <!-- Mobile Touch Controls Bar with Borderless Aero Spheres -->
+  <!-- 行動裝置觸控板 (無白邊 Aero 圓形球體) -->
   <div class="mobile-touch-pad" id="mobileTouchPad">
     <div class="dpad-group">
       <div class="aero-circle-btn" id="btnLeft">←</div>
@@ -466,13 +465,13 @@ const player = {
 
 const colors = [
     null,
-    '#ff4d4f', // I - Red
-    '#1890ff', // J - Blue
-    '#fa8c16', // L - Orange
-    '#722ed1', // O - Purple
-    '#52c41a', // S - Green
-    '#fadb14', // T - Yellow
-    '#13c2c2', // Z - Cyan
+    '#ff4d4f', // I - 紅色
+    '#1890ff', // J - 藍色
+    '#fa8c16', // L - 橙色
+    '#722ed1', // O - 紫色
+    '#52c41a', // S - 綠色
+    '#fadb14', // T - 黃色
+    '#13c2c2', // Z - 青色
 ];
 
 function createMatrix(w, h) {
@@ -529,7 +528,7 @@ function createPiece(type) {
     }
 }
 
-// 7-Bag Randomizer
+// 7-Bag 隨機發牌器
 let pieceBag = [];
 function shuffle(array) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -615,7 +614,7 @@ function playerReset() {
     player.pos.x = (arena[0].length / 2 | 0) - (player.matrix[0].length / 2 | 0);
     if (collide(arena, player)) {
         isRunning = false;
-        showPopup("🌟 Game Over", `Wonderful effort! You scored ${player.score} points and reached Level ${player.level}. Want to play again?`, "Play Again");
+        showPopup("🌟 Game Over", `Fantastic effort! You scored ${player.score} points and reached Level ${player.level}. Want to play again?`, "Play Again");
     }
 }
 
@@ -624,7 +623,6 @@ function showPopup(title, msg, btnText = "Continue") {
     document.getElementById('popupMessage').innerText = msg;
     document.getElementById('popupBtn').innerText = btnText;
     document.getElementById('popupModal').classList.add('active');
-    startBtn.innerText = "😊 START";
 }
 
 function hidePopup() {
@@ -693,6 +691,7 @@ let dropCounter = 0;
 let dropInterval = 900;
 let lastTime = 0;
 let isRunning = false;
+let isPaused = false;
 
 function update(time = 0) {
     if (!isRunning) return;
@@ -736,7 +735,7 @@ document.addEventListener('keydown', event => {
     }
 });
 
-/* Touch / Mobile Control Button Event Listeners */
+/* 觸控/手機控制按鈕事件 */
 document.getElementById('btnLeft').addEventListener('click', (e) => { e.preventDefault(); if(isRunning) playerMove(-1); });
 document.getElementById('btnRight').addEventListener('click', (e) => { e.preventDefault(); if(isRunning) playerMove(1); });
 document.getElementById('btnRotate').addEventListener('click', (e) => { e.preventDefault(); if(isRunning) playerRotate(1); });
@@ -749,7 +748,7 @@ const helpBtn = document.getElementById('helpBtn');
 startBtn.addEventListener('click', () => {
     canvas.focus();
     if (!isRunning) {
-        // Show start popup with controls guide and pulsing continue button
+        isPaused = false;
         showPopup(
             "🎮 Game Controls", 
             "Controls:\n• Move: Arrow Keys / A & D\n• Rotate: Up Arrow / W\n• Soft Drop: Down Arrow / S\n• Hard Drop: Spacebar\n\nHave fun stacking!", 
@@ -757,6 +756,7 @@ startBtn.addEventListener('click', () => {
         );
     } else {
         isRunning = false;
+        isPaused = true;
         startBtn.innerText = "😊 START";
         showPopup("⏸️ Game Paused", "The game is currently paused. Take a breather!", "Resume");
     }
@@ -774,16 +774,24 @@ helpBtn.addEventListener('click', () => {
 
 document.getElementById('popupBtn').addEventListener('click', () => {
     canvas.focus();
+    const title = document.getElementById('dialogTitle').innerText;
     hidePopup();
-    if (document.getElementById('dialogTitle').innerText.includes("Game Over")) {
+
+    if (title.includes("How to Play")) {
+        // 點擊 HELP 的 Got it! 不直接開始遊戲，保持初始狀態
+        return;
+    }
+
+    if (title.includes("Game Over")) {
         arena.forEach(row => row.fill(0));
         pieceBag = [];
         player.score = 0;
         player.level = 1;
         updateScore();
     }
+
     isRunning = true;
-    if (!player.matrix) {
+    if (!player.matrix || title.includes("Game Over")) {
         playerReset();
     }
     lastTime = performance.now();
@@ -798,4 +806,4 @@ draw();
 </html>
 """
 
-st.components.v1.html(tetris_html, height=580, scrolling=False)
+st.components.v1.html(tetris_html, height=620, scrolling=False)
