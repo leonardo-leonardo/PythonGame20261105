@@ -11,7 +11,7 @@ st.markdown(
         background-color: #000000;
         overflow: hidden;
     }
-    /* 防止主頁面捲動 */
+    /* Prevent main page scrolling */
     html, body, [data-testid="stAppViewContainer"], [data-testid="stVerticalBlock"] {
         overflow: hidden !important;
         height: 100% !important;
@@ -47,7 +47,7 @@ tetris_html = """
     touch-action: manipulation;
   }
 
-  /* Windows Vista Aero 玻璃視窗外框 */
+  /* Windows Vista Aero Glass Window Frame */
   .window {
     background: linear-gradient(135deg, rgba(230, 242, 255, 0.94) 0%, rgba(195, 222, 250, 0.88) 100%);
     backdrop-filter: blur(25px);
@@ -57,11 +57,11 @@ tetris_html = """
     box-shadow: 0 30px 70px rgba(0, 0, 0, 0.95), 
                 inset 0 1px 0 rgba(255, 255, 255, 0.95),
                 0 0 0 1px rgba(30, 90, 160, 0.65);
-    width: 500px;
+    width: 480px;
     max-width: 98vw;
-    overflow: hidden;
-    position: relative;
     box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
   }
 
   .window-header {
@@ -105,21 +105,10 @@ tetris_html = """
     box-shadow: inset 0 1px 0 rgba(255,255,255,0.9);
   }
 
-  .vista-ctrl-btn:hover {
-    background: linear-gradient(to bottom, #ffffff 0%, #f0f7ff 50%, #d2e6fc 51%, #f5fcff 100%);
-    border-color: #286bb0;
-  }
-
-  .vista-ctrl-btn.close:hover {
-    background: linear-gradient(to bottom, #f88379 0%, #e81123 100%);
-    color: white;
-    border-color: #a80000;
-  }
-
   .window-body {
-    padding: 14px;
+    padding: 12px;
     display: flex;
-    gap: 14px;
+    gap: 12px;
     background: linear-gradient(135deg, rgba(238, 246, 254, 0.8) 0%, rgba(205, 228, 250, 0.7) 100%);
     align-items: flex-start;
   }
@@ -138,7 +127,7 @@ tetris_html = """
     width: 170px;
   }
 
-  /* 稍微加大且精緻的分數/等級面板 */
+  /* Larger Score and Level Vista Panels */
   .vista-groupbox {
     background: linear-gradient(to bottom, rgba(255, 255, 255, 0.95) 0%, rgba(230, 245, 255, 0.88) 48%, rgba(200, 228, 252, 0.9) 49%, rgba(215, 238, 255, 0.96) 100%);
     border: 1px solid #3c7fb1;
@@ -147,16 +136,16 @@ tetris_html = """
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 1), 
                 inset 0 -1px 2px rgba(0, 50, 100, 0.15),
                 0 3px 6px rgba(10, 35, 70, 0.15);
-    margin-bottom: 10px;
+    margin-bottom: 8px;
     position: relative;
   }
 
   .vista-groupbox legend {
-    font-size: 10.5px;
+    font-size: 10px;
     font-weight: 700;
     color: #1a4d80;
     padding: 0;
-    margin-bottom: 3px;
+    margin-bottom: 2px;
     letter-spacing: 0.6px;
     text-shadow: 0 1px 0 rgba(255, 255, 255, 0.9);
   }
@@ -179,7 +168,7 @@ tetris_html = """
     font-weight: 400;
   }
 
-  /* Windows Vista 漸層按鈕 */
+  /* Vista Buttons */
   .vista-btn {
     background: linear-gradient(to bottom, #ffffff 0%, #f4f9ff 45%, #d4e7fc 50%, #9bc6f3 100%);
     border: 1px solid #3c7fb1;
@@ -191,20 +180,17 @@ tetris_html = """
     font-family: 'Segoe UI', Tahoma, sans-serif;
     font-size: 11px;
     font-weight: 700;
-    padding: 8px 12px;
+    padding: 7px 10px;
     cursor: pointer;
     width: 100%;
     text-align: center;
     transition: all 0.1s ease;
-    margin-bottom: 6px;
+    margin-bottom: 5px;
   }
 
   .vista-btn:hover {
     background: linear-gradient(to bottom, #ffffff 0%, #ffffff 45%, #e3f0fe 50%, #afdfed 100%);
     border-color: #2b628d;
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 1), 
-                inset 0 -1px 2px rgba(0, 60, 120, 0.3),
-                0 3px 6px rgba(0, 0, 0, 0.2);
   }
 
   .vista-btn:active {
@@ -212,27 +198,30 @@ tetris_html = """
     box-shadow: inset 0 2px 4px rgba(10, 40, 80, 0.3);
   }
 
-  /* 行動裝置觸控板：移除白色邊框、增添極佳點擊下陷深度感 */
+  /* Mobile Touch Controls Bar (Fully inside window, no clipping) */
   .mobile-touch-pad {
     display: none;
     width: 100%;
-    margin-top: 10px;
+    padding: 8px 12px 14px 12px;
+    background: linear-gradient(135deg, rgba(220, 238, 255, 0.9) 0%, rgba(185, 215, 248, 0.85) 100%);
+    border-top: 1px solid rgba(138, 180, 223, 0.8);
+    box-sizing: border-box;
     justify-content: space-around;
     align-items: center;
-    padding: 4px 0;
   }
 
+  /* Borderless Aero Spheres with deep click depth */
   .aero-circle-btn {
-    width: 52px;
-    height: 52px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
     background: radial-gradient(circle at 45% 25%, #7ac5ff 0%, #1e7bd6 50%, #083c84 100%);
     border: none;
-    box-shadow: 0 5px 14px rgba(0, 0, 0, 0.5), 
+    box-shadow: 0 5px 14px rgba(0, 0, 0, 0.45), 
                 inset 0 3px 6px rgba(255, 255, 255, 0.95), 
                 inset 0 -4px 6px rgba(0, 25, 80, 0.8);
     color: white;
-    font-size: 20px;
+    font-size: 19px;
     font-weight: bold;
     display: flex;
     align-items: center;
@@ -245,10 +234,10 @@ tetris_html = """
   }
 
   .aero-circle-btn:active {
-    transform: scale(0.90) translateY(3px);
-    filter: brightness(0.9);
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.6), 
-                inset 0 5px 10px rgba(0, 15, 50, 0.9);
+    transform: scale(0.88) translateY(4px);
+    filter: brightness(0.85);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.6), 
+                inset 0 6px 12px rgba(0, 15, 50, 0.95);
   }
 
   .dpad-group {
@@ -261,7 +250,7 @@ tetris_html = """
     gap: 10px;
   }
 
-  /* Windows 7 風格脈衝動畫 (Windows 7 Pulse Animation) */
+  /* Windows 7 Pulse Animation */
   @keyframes win7Pulse {
     0% {
       box-shadow: 0 0 0 0 rgba(74, 144, 226, 0.7), inset 0 1px 0 rgba(255,255,255,1);
@@ -278,7 +267,7 @@ tetris_html = """
     animation: win7Pulse 1.8s infinite;
   }
 
-  /* Vista 彈出對話框 */
+  /* Vista Dialog Popup Modal (Fixed pointer-events so hidden modal never blocks clicks) */
   .modal-overlay {
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
@@ -290,6 +279,7 @@ tetris_html = """
     z-index: 100;
     visibility: hidden;
     opacity: 0;
+    pointer-events: none;
     transition: 0.2s ease-in-out;
     border-radius: 8px;
   }
@@ -297,13 +287,14 @@ tetris_html = """
   .modal-overlay.active {
     visibility: visible;
     opacity: 1;
+    pointer-events: auto;
   }
 
   .dialog-box {
     background: linear-gradient(135deg, #f5fbff 0%, #d5eafc 100%);
     border: 2px solid #3c7fb1;
     border-radius: 6px;
-    width: 310px;
+    width: 290px;
     box-shadow: 0 20px 45px rgba(5,20,40,0.5), inset 0 1px 0 rgba(255,255,255,0.95);
     overflow: hidden;
     text-align: center;
@@ -320,17 +311,17 @@ tetris_html = """
   }
 
   .dialog-content {
-    padding: 16px 14px;
-    font-size: 11.5px;
+    padding: 14px 12px;
+    font-size: 11px;
     color: #1e395b;
-    line-height: 1.5;
+    line-height: 1.45;
     font-weight: 400;
     text-align: left;
   }
 
   .dialog-icon {
-    font-size: 26px;
-    margin-bottom: 6px;
+    font-size: 24px;
+    margin-bottom: 4px;
     text-align: center;
   }
 
@@ -343,26 +334,25 @@ tetris_html = """
   }
 
   .dialog-btn {
-    width: 120px;
+    width: 115px;
   }
 
-  /* 手機版自動適應切換 */
+  /* Auto-detect mobile / touch screens */
   @media (max-width: 768px), (pointer: coarse) {
     .window {
-      width: 360px;
-      padding: 8px;
+      width: 350px;
     }
     .window-body {
       flex-direction: column;
       align-items: center;
-      padding: 8px;
-      gap: 8px;
+      padding: 10px;
+      gap: 10px;
     }
     .side-panel {
       width: 100%;
       flex-direction: row;
       justify-content: space-between;
-      gap: 8px;
+      gap: 6px;
     }
     .vista-groupbox {
       flex: 1;
@@ -376,8 +366,8 @@ tetris_html = """
       display: flex;
     }
     canvas {
-      width: 180px;
-      height: 306px;
+      width: 170px;
+      height: 289px;
     }
   }
 </style>
@@ -420,7 +410,7 @@ tetris_html = """
       </div>
     </div>
 
-    <!-- Vista 彈出對話框 -->
+    <!-- Vista Dialog Popup Modal -->
     <div class="modal-overlay" id="popupModal">
       <div class="dialog-box">
         <div class="dialog-header" id="dialogTitle">Windows Information</div>
@@ -435,7 +425,7 @@ tetris_html = """
     </div>
   </div>
 
-  <!-- 行動裝置觸控板 (無白邊 Aero 圓形球體) -->
+  <!-- Mobile Touch Controls Bar -->
   <div class="mobile-touch-pad" id="mobileTouchPad">
     <div class="dpad-group">
       <div class="aero-circle-btn" id="btnLeft">←</div>
@@ -465,13 +455,13 @@ const player = {
 
 const colors = [
     null,
-    '#ff4d4f', // I - 紅色
-    '#1890ff', // J - 藍色
-    '#fa8c16', // L - 橙色
-    '#722ed1', // O - 紫色
-    '#52c41a', // S - 綠色
-    '#fadb14', // T - 黃色
-    '#13c2c2', // Z - 青色
+    '#ff4d4f', // Red
+    '#1890ff', // Blue
+    '#fa8c16', // Orange
+    '#722ed1', // Purple
+    '#52c41a', // Green
+    '#fadb14', // Yellow
+    '#13c2c2', // Cyan
 ];
 
 function createMatrix(w, h) {
@@ -528,7 +518,7 @@ function createPiece(type) {
     }
 }
 
-// 7-Bag 隨機發牌器
+// 7-Bag Randomizer
 let pieceBag = [];
 function shuffle(array) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -691,7 +681,6 @@ let dropCounter = 0;
 let dropInterval = 900;
 let lastTime = 0;
 let isRunning = false;
-let isPaused = false;
 
 function update(time = 0) {
     if (!isRunning) return;
@@ -735,7 +724,7 @@ document.addEventListener('keydown', event => {
     }
 });
 
-/* 觸控/手機控制按鈕事件 */
+/* Touch Control Listeners */
 document.getElementById('btnLeft').addEventListener('click', (e) => { e.preventDefault(); if(isRunning) playerMove(-1); });
 document.getElementById('btnRight').addEventListener('click', (e) => { e.preventDefault(); if(isRunning) playerMove(1); });
 document.getElementById('btnRotate').addEventListener('click', (e) => { e.preventDefault(); if(isRunning) playerRotate(1); });
@@ -748,15 +737,13 @@ const helpBtn = document.getElementById('helpBtn');
 startBtn.addEventListener('click', () => {
     canvas.focus();
     if (!isRunning) {
-        isPaused = false;
         showPopup(
             "🎮 Game Controls", 
-            "Controls:\n• Move: Arrow Keys / A & D\n• Rotate: Up Arrow / W\n• Soft Drop: Down Arrow / S\n• Hard Drop: Spacebar\n\nHave fun stacking!", 
+            "Controls:\\n• Move: Arrow Keys / A & D\\n• Rotate: Up Arrow / W\\n• Soft Drop: Down Arrow / S\\n• Hard Drop: Spacebar\\n\\nHave fun stacking!", 
             "Start Game"
         );
     } else {
         isRunning = false;
-        isPaused = true;
         startBtn.innerText = "😊 START";
         showPopup("⏸️ Game Paused", "The game is currently paused. Take a breather!", "Resume");
     }
@@ -767,7 +754,7 @@ helpBtn.addEventListener('click', () => {
     startBtn.innerText = "😊 START";
     showPopup(
         "📖 How to Play Tetris",
-        "1. Position and rotate falling blocks to form complete horizontal lines without gaps.\n2. Completed lines clear instantly, rewarding you with points.\n3. Every 500 points increases your level and speed!\n4. Use Arrow keys / WASD or mobile Aero buttons to play.",
+        "1. Position and rotate falling blocks to form complete horizontal lines.\\n2. Completed lines clear instantly and award points.\\n3. Every 500 points increases level and speed!\\n4. Use Arrow keys / WASD or mobile Aero buttons.",
         "Got it!"
     );
 });
@@ -778,8 +765,7 @@ document.getElementById('popupBtn').addEventListener('click', () => {
     hidePopup();
 
     if (title.includes("How to Play")) {
-        // 點擊 HELP 的 Got it! 不直接開始遊戲，保持初始狀態
-        return;
+        return; // Just close help, don't auto-start
     }
 
     if (title.includes("Game Over")) {
@@ -806,4 +792,4 @@ draw();
 </html>
 """
 
-st.components.v1.html(tetris_html, height=620, scrolling=False)
+st.components.v1.html(tetris_html, height=720, scrolling=False)
