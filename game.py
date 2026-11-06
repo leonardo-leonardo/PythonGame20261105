@@ -11,7 +11,7 @@ st.markdown(
         background-color: #000000;
         overflow: hidden;
     }
-    /* 禁止主頁面捲動 */
+    /* Prevent main page scrolling */
     html, body, [data-testid="stAppViewContainer"], [data-testid="stVerticalBlock"] {
         overflow: hidden !important;
         height: 100% !important;
@@ -28,6 +28,7 @@ tetris_html = """
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
   html, body {
@@ -43,9 +44,10 @@ tetris_html = """
     overflow: hidden;
     outline: none;
     -webkit-font-smoothing: antialiased;
+    touch-action: manipulation;
   }
 
-  /* Windows Vista Aero 玻璃視窗外框 */
+  /* Windows Vista Aero Glass Window Frame */
   .window {
     background: linear-gradient(135deg, rgba(230, 242, 255, 0.94) 0%, rgba(195, 222, 250, 0.88) 100%);
     backdrop-filter: blur(25px);
@@ -56,6 +58,7 @@ tetris_html = """
                 inset 0 1px 0 rgba(255, 255, 255, 0.95),
                 0 0 0 1px rgba(30, 90, 160, 0.65);
     width: 480px;
+    max-width: 98vw;
     overflow: hidden;
     position: relative;
     box-sizing: border-box;
@@ -114,10 +117,11 @@ tetris_html = """
   }
 
   .window-body {
-    padding: 14px;
+    padding: 12px;
     display: flex;
-    gap: 14px;
+    gap: 12px;
     background: linear-gradient(135deg, rgba(238, 246, 254, 0.8) 0%, rgba(205, 228, 250, 0.7) 100%);
+    align-items: flex-start;
   }
 
   canvas {
@@ -134,21 +138,20 @@ tetris_html = """
     width: 150px;
   }
 
-  /* 極致 Windows Vista Aero 玻璃質感計分/等級面板 */
   .vista-groupbox {
     background: linear-gradient(to bottom, rgba(255, 255, 255, 0.92) 0%, rgba(225, 240, 255, 0.8) 48%, rgba(195, 222, 250, 0.85) 49%, rgba(210, 232, 252, 0.92) 100%);
     border: 1px solid #3c7fb1;
     border-radius: 6px;
-    padding: 8px 10px;
+    padding: 6px 8px;
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 1), 
                 inset 0 -1px 2px rgba(0, 50, 100, 0.15),
                 0 3px 6px rgba(10, 35, 70, 0.15);
-    margin-bottom: 10px;
+    margin-bottom: 8px;
     position: relative;
   }
 
   .vista-groupbox legend {
-    font-size: 9.5px;
+    font-size: 9px;
     font-weight: 700;
     color: #1a4d80;
     padding: 0;
@@ -158,7 +161,7 @@ tetris_html = """
   }
 
   .stat-value {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 700;
     color: #0b2d4f;
     text-align: center;
@@ -167,15 +170,14 @@ tetris_html = """
   }
 
   .controls-hint {
-    font-size: 8.5px;
-    line-height: 1.4;
+    font-size: 8px;
+    line-height: 1.3;
     color: #1e395b;
     border-top: 1px solid rgba(138, 180, 223, 0.6);
     padding-top: 6px;
     font-weight: 400;
   }
 
-  /* Windows Vista Aero 漸層玻璃按鈕 */
   .vista-btn {
     background: linear-gradient(to bottom, #ffffff 0%, #f4f9ff 45%, #d4e7fc 50%, #9bc6f3 100%);
     border: 1px solid #3c7fb1;
@@ -185,9 +187,9 @@ tetris_html = """
                 0 2px 4px rgba(0, 0, 0, 0.15);
     color: #1e395b;
     font-family: 'Segoe UI', Tahoma, sans-serif;
-    font-size: 10.5px;
+    font-size: 10px;
     font-weight: 600;
-    padding: 7px 12px;
+    padding: 6px 10px;
     cursor: pointer;
     width: 100%;
     text-align: center;
@@ -197,9 +199,6 @@ tetris_html = """
   .vista-btn:hover {
     background: linear-gradient(to bottom, #ffffff 0%, #ffffff 45%, #e3f0fe 50%, #afdfed 100%);
     border-color: #2b628d;
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 1), 
-                inset 0 -1px 2px rgba(0, 60, 120, 0.3),
-                0 3px 6px rgba(0, 0, 0, 0.2);
   }
 
   .vista-btn:active {
@@ -207,7 +206,57 @@ tetris_html = """
     box-shadow: inset 0 2px 4px rgba(10, 40, 80, 0.3);
   }
 
-  /* Windows Vista 彈出對話視窗 */
+  /* Full Aero Mobile Touch Controls (Hidden on Desktop by default) */
+  .mobile-touch-pad {
+    display: none;
+    width: 100%;
+    margin-top: 10px;
+    justify-content: space-around;
+    align-items: center;
+    padding: 4px 0;
+  }
+
+  /* Mid-2000s Vista FULL Aero Circular Glossy Button (like Image 1) */
+  .aero-circle-btn {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 50% 28%, #7ac5ff 0%, #1e7bd6 55%, #083c84 100%);
+    border: 2px solid rgba(255, 255, 255, 0.95);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4), 
+                inset 0 2px 5px rgba(255, 255, 255, 0.9), 
+                inset 0 -3px 5px rgba(0, 30, 90, 0.7);
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.6);
+    transition: transform 0.05s ease, filter 0.05s ease;
+  }
+
+  .aero-circle-btn:active {
+    transform: scale(0.92);
+    filter: brightness(1.15);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5), 
+                inset 0 3px 6px rgba(0, 20, 60, 0.8);
+  }
+
+  .dpad-group {
+    display: flex;
+    gap: 8px;
+  }
+
+  .action-group {
+    display: flex;
+    gap: 8px;
+  }
+
+  /* Vista Dialog Popup Modal */
   .modal-overlay {
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
@@ -272,6 +321,41 @@ tetris_html = """
   .dialog-btn {
     width: 110px;
   }
+
+  /* Auto-detect mobile or touch screens and adjust layout */
+  @media (max-width: 768px), (pointer: coarse) {
+    .window {
+      width: 360px;
+      padding: 8px;
+    }
+    .window-body {
+      flex-direction: column;
+      align-items: center;
+      padding: 8px;
+      gap: 8px;
+    }
+    .side-panel {
+      width: 100%;
+      flex-direction: row;
+      justify-content: space-between;
+      gap: 8px;
+    }
+    .vista-groupbox {
+      flex: 1;
+      margin-bottom: 0;
+      padding: 4px 6px;
+    }
+    .controls-hint {
+      display: none;
+    }
+    .mobile-touch-pad {
+      display: flex;
+    }
+    canvas {
+      width: 180px;
+      height: 306px;
+    }
+  }
 </style>
 </head>
 <body>
@@ -310,18 +394,31 @@ tetris_html = """
         Space : Hard Drop
       </div>
     </div>
+  </div>
 
-    <!-- Vista 彈出對話框 -->
-    <div class="modal-overlay" id="popupModal">
-      <div class="dialog-box">
-        <div class="dialog-header">Windows Information</div>
-        <div class="dialog-content">
-          <div class="dialog-icon" id="popupIcon">🌟</div>
-          <p id="popupMessage">Wonderful game! You did fantastic stacking those blocks. Ready for another round?</p>
-        </div>
-        <div class="dialog-footer">
-          <button class="vista-btn dialog-btn" id="popupBtn">Play Again</button>
-        </div>
+  <!-- Mobile Touch Controls Bar with Vista FULL Aero Glossy Circular Buttons -->
+  <div class="mobile-touch-pad" id="mobileTouchPad">
+    <div class="dpad-group">
+      <div class="aero-circle-btn" id="btnLeft">←</div>
+      <div class="aero-circle-btn" id="btnRight">→</div>
+    </div>
+    <div class="action-group">
+      <div class="aero-circle-btn" id="btnRotate">⟳</div>
+      <div class="aero-circle-btn" id="btnDown">↓</div>
+      <div class="aero-circle-btn" id="btnDrop">⤓</div>
+    </div>
+  </div>
+
+  <!-- Vista Dialog Popup -->
+  <div class="modal-overlay" id="popupModal">
+    <div class="dialog-box">
+      <div class="dialog-header">Windows Information</div>
+      <div class="dialog-content">
+        <div class="dialog-icon" id="popupIcon">🌟</div>
+        <p id="popupMessage">Wonderful game! You did fantastic stacking those blocks. Ready for another round?</p>
+      </div>
+      <div class="dialog-footer">
+        <button class="vista-btn dialog-btn" id="popupBtn">Play Again</button>
       </div>
     </div>
   </div>
@@ -343,13 +440,13 @@ const player = {
 
 const colors = [
     null,
-    '#ff4d4f', // I - 紅色
-    '#1890ff', // J - 藍色
-    '#fa8c16', // L - 橙色
-    '#722ed1', // O - 紫色
-    '#52c41a', // S - 綠色
-    '#fadb14', // T - 黃色
-    '#13c2c2', // Z - 青色
+    '#ff4d4f', // I - Red
+    '#1890ff', // J - Blue
+    '#fa8c16', // L - Orange
+    '#722ed1', // O - Purple
+    '#52c41a', // S - Green
+    '#fadb14', // T - Yellow
+    '#13c2c2', // Z - Cyan
 ];
 
 function createMatrix(w, h) {
@@ -406,7 +503,7 @@ function createPiece(type) {
     }
 }
 
-// 7-Bag 隨機發牌器
+// 7-Bag Randomizer
 let pieceBag = [];
 function shuffle(array) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -527,6 +624,18 @@ function playerRotate(dir) {
     }
 }
 
+function hardDrop() {
+    while (!collide(arena, player)) {
+        player.pos.y++;
+    }
+    player.pos.y--;
+    merge(arena, player);
+    playerReset();
+    arenaSweep();
+    updateScore();
+    dropCounter = 0;
+}
+
 function collide(arena, player) {
     const m = player.matrix;
     const o = player.pos;
@@ -601,17 +710,16 @@ document.addEventListener('keydown', event => {
     } else if (event.key === 'ArrowUp' || event.key === 'w' || event.key === 'W') {
         playerRotate(1);
     } else if (event.key === ' ') {
-        while (!collide(arena, player)) {
-            player.pos.y++;
-        }
-        player.pos.y--;
-        merge(arena, player);
-        playerReset();
-        arenaSweep();
-        updateScore();
-        dropCounter = 0;
+        hardDrop();
     }
 });
+
+/* Touch / Mobile Control Button Event Listeners */
+document.getElementById('btnLeft').addEventListener('click', (e) => { e.preventDefault(); if(isRunning) playerMove(-1); });
+document.getElementById('btnRight').addEventListener('click', (e) => { e.preventDefault(); if(isRunning) playerMove(1); });
+document.getElementById('btnRotate').addEventListener('click', (e) => { e.preventDefault(); if(isRunning) playerRotate(1); });
+document.getElementById('btnDown').addEventListener('click', (e) => { e.preventDefault(); if(isRunning) playerDrop(); });
+document.getElementById('btnDrop').addEventListener('click', (e) => { e.preventDefault(); if(isRunning) hardDrop(); });
 
 const startBtn = document.getElementById('startBtn');
 startBtn.addEventListener('click', () => {
@@ -638,6 +746,7 @@ document.getElementById('popupBtn').addEventListener('click', () => {
     playerReset();
     lastTime = performance.now();
     update();
+    startBtn.innerText = "PAUSION" || "PAUSE";
     startBtn.innerText = "PAUSE";
 });
 
@@ -648,4 +757,4 @@ draw();
 </html>
 """
 
-st.components.v1.html(tetris_html, height=500, scrolling=False)
+st.components.v1.html(tetris_html, height=580, scrolling=False)
