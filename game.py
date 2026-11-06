@@ -57,7 +57,7 @@ tetris_html = """
     box-shadow: 0 30px 70px rgba(0, 0, 0, 0.95), 
                 inset 0 1px 0 rgba(255, 255, 255, 0.95),
                 0 0 0 1px rgba(30, 90, 160, 0.65);
-    width: 480px;
+    width: 500px;
     max-width: 98vw;
     overflow: hidden;
     position: relative;
@@ -117,9 +117,9 @@ tetris_html = """
   }
 
   .window-body {
-    padding: 12px;
+    padding: 14px;
     display: flex;
-    gap: 12px;
+    gap: 14px;
     background: linear-gradient(135deg, rgba(238, 246, 254, 0.8) 0%, rgba(205, 228, 250, 0.7) 100%);
     align-items: flex-start;
   }
@@ -135,33 +135,34 @@ tetris_html = """
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 150px;
+    width: 170px;
   }
 
+  /* Slightly Larger Score and Level Vista Panels */
   .vista-groupbox {
-    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.92) 0%, rgba(225, 240, 255, 0.8) 48%, rgba(195, 222, 250, 0.85) 49%, rgba(210, 232, 252, 0.92) 100%);
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.95) 0%, rgba(230, 245, 255, 0.88) 48%, rgba(200, 228, 252, 0.9) 49%, rgba(215, 238, 255, 0.96) 100%);
     border: 1px solid #3c7fb1;
     border-radius: 6px;
-    padding: 6px 8px;
+    padding: 10px 12px;
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 1), 
                 inset 0 -1px 2px rgba(0, 50, 100, 0.15),
                 0 3px 6px rgba(10, 35, 70, 0.15);
-    margin-bottom: 8px;
+    margin-bottom: 10px;
     position: relative;
   }
 
   .vista-groupbox legend {
-    font-size: 9px;
+    font-size: 10.5px;
     font-weight: 700;
     color: #1a4d80;
     padding: 0;
-    margin-bottom: 2px;
-    letter-spacing: 0.5px;
+    margin-bottom: 3px;
+    letter-spacing: 0.6px;
     text-shadow: 0 1px 0 rgba(255, 255, 255, 0.9);
   }
 
   .stat-value {
-    font-size: 16px;
+    font-size: 20px;
     font-weight: 700;
     color: #0b2d4f;
     text-align: center;
@@ -170,14 +171,15 @@ tetris_html = """
   }
 
   .controls-hint {
-    font-size: 8px;
-    line-height: 1.3;
+    font-size: 8.5px;
+    line-height: 1.4;
     color: #1e395b;
     border-top: 1px solid rgba(138, 180, 223, 0.6);
     padding-top: 6px;
     font-weight: 400;
   }
 
+  /* Playful Happy Start/Stop & Help Buttons */
   .vista-btn {
     background: linear-gradient(to bottom, #ffffff 0%, #f4f9ff 45%, #d4e7fc 50%, #9bc6f3 100%);
     border: 1px solid #3c7fb1;
@@ -187,18 +189,22 @@ tetris_html = """
                 0 2px 4px rgba(0, 0, 0, 0.15);
     color: #1e395b;
     font-family: 'Segoe UI', Tahoma, sans-serif;
-    font-size: 10px;
-    font-weight: 600;
-    padding: 6px 10px;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 8px 12px;
     cursor: pointer;
     width: 100%;
     text-align: center;
     transition: all 0.1s ease;
+    margin-bottom: 6px;
   }
 
   .vista-btn:hover {
     background: linear-gradient(to bottom, #ffffff 0%, #ffffff 45%, #e3f0fe 50%, #afdfed 100%);
     border-color: #2b628d;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 1), 
+                inset 0 -1px 2px rgba(0, 60, 120, 0.3),
+                0 3px 6px rgba(0, 0, 0, 0.2);
   }
 
   .vista-btn:active {
@@ -206,7 +212,7 @@ tetris_html = """
     box-shadow: inset 0 2px 4px rgba(10, 40, 80, 0.3);
   }
 
-  /* Full Aero Mobile Touch Controls (Hidden on Desktop by default) */
+  /* Mobile Touch Controls Bar with Borderless Aero Spheres & Deep Click Depth */
   .mobile-touch-pad {
     display: none;
     width: 100%;
@@ -216,16 +222,16 @@ tetris_html = """
     padding: 4px 0;
   }
 
-  /* Mid-2000s Vista FULL Aero Circular Glossy Button (like Image 1) */
+  /* Mid-2000s Vista FULL Aero Glossy Circular Buttons (No white outline, deep click depth) */
   .aero-circle-btn {
     width: 52px;
     height: 52px;
     border-radius: 50%;
-    background: radial-gradient(circle at 50% 28%, #7ac5ff 0%, #1e7bd6 55%, #083c84 100%);
-    border: 2px solid rgba(255, 255, 255, 0.95);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4), 
-                inset 0 2px 5px rgba(255, 255, 255, 0.9), 
-                inset 0 -3px 5px rgba(0, 30, 90, 0.7);
+    background: radial-gradient(circle at 45% 25%, #7ac5ff 0%, #1e7bd6 50%, #083c84 100%);
+    border: none;
+    box-shadow: 0 5px 14px rgba(0, 0, 0, 0.5), 
+                inset 0 3px 6px rgba(255, 255, 255, 0.95), 
+                inset 0 -4px 6px rgba(0, 25, 80, 0.8);
     color: white;
     font-size: 20px;
     font-weight: bold;
@@ -236,24 +242,41 @@ tetris_html = """
     user-select: none;
     -webkit-tap-highlight-color: transparent;
     text-shadow: 0 1px 2px rgba(0,0,0,0.6);
-    transition: transform 0.05s ease, filter 0.05s ease;
+    transition: transform 0.05s ease, filter 0.05s ease, box-shadow 0.05s ease;
   }
 
   .aero-circle-btn:active {
-    transform: scale(0.92);
-    filter: brightness(1.15);
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5), 
-                inset 0 3px 6px rgba(0, 20, 60, 0.8);
+    transform: scale(0.90) translateY(3px);
+    filter: brightness(0.9);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.6), 
+                inset 0 5px 10px rgba(0, 15, 50, 0.9);
   }
 
   .dpad-group {
     display: flex;
-    gap: 8px;
+    gap: 10px;
   }
 
   .action-group {
     display: flex;
-    gap: 8px;
+    gap: 10px;
+  }
+
+  /* Windows 7 Pulse Animation for Continue Button */
+  @keyframes win7Pulse {
+    0% {
+      box-shadow: 0 0 0 0 rgba(74, 144, 226, 0.7), inset 0 1px 0 rgba(255,255,255,1);
+    }
+    70% {
+      box-shadow: 0 0 0 10px rgba(74, 144, 226, 0), inset 0 1px 0 rgba(255,255,255,1);
+    }
+    100% {
+      box-shadow: 0 0 0 0 rgba(74, 144, 226, 0), inset 0 1px 0 rgba(255,255,255,1);
+    }
+  }
+
+  .pulse-btn {
+    animation: win7Pulse 1.8s infinite;
   }
 
   /* Vista Dialog Popup Modal */
@@ -281,7 +304,7 @@ tetris_html = """
     background: linear-gradient(135deg, #f5fbff 0%, #d5eafc 100%);
     border: 2px solid #3c7fb1;
     border-radius: 6px;
-    width: 280px;
+    width: 310px;
     box-shadow: 0 20px 45px rgba(5,20,40,0.5), inset 0 1px 0 rgba(255,255,255,0.95);
     overflow: hidden;
     text-align: center;
@@ -291,7 +314,7 @@ tetris_html = """
     background: linear-gradient(to bottom, #e4f2ff 0%, #7db6ed 100%);
     color: #0b2545;
     padding: 7px 10px;
-    font-size: 10.5px;
+    font-size: 11px;
     font-weight: 600;
     text-align: left;
     border-bottom: 1px solid #3c7fb1;
@@ -299,15 +322,17 @@ tetris_html = """
 
   .dialog-content {
     padding: 16px 14px;
-    font-size: 11px;
+    font-size: 11.5px;
     color: #1e395b;
-    line-height: 1.4;
+    line-height: 1.5;
     font-weight: 400;
+    text-align: left;
   }
 
   .dialog-icon {
-    font-size: 24px;
+    font-size: 26px;
     margin-bottom: 6px;
+    text-align: center;
   }
 
   .dialog-footer {
@@ -319,7 +344,7 @@ tetris_html = """
   }
 
   .dialog-btn {
-    width: 110px;
+    width: 120px;
   }
 
   /* Auto-detect mobile or touch screens and adjust layout */
@@ -343,7 +368,7 @@ tetris_html = """
     .vista-groupbox {
       flex: 1;
       margin-bottom: 0;
-      padding: 4px 6px;
+      padding: 6px 8px;
     }
     .controls-hint {
       display: none;
@@ -384,7 +409,8 @@ tetris_html = """
           <legend>LEVEL</legend>
           <p class="stat-value" id="level">1</p>
         </div>
-        <button class="vista-btn" id="startBtn">START</button>
+        <button class="vista-btn" id="startBtn">😊 START</button>
+        <button class="vista-btn" id="helpBtn">❓ HELP</button>
       </div>
       <div class="controls-hint">
         <strong>CONTROLS:</strong><br>
@@ -394,9 +420,23 @@ tetris_html = """
         Space : Hard Drop
       </div>
     </div>
+
+    <!-- Vista Dialog Popup / Modal -->
+    <div class="modal-overlay" id="popupModal">
+      <div class="dialog-box">
+        <div class="dialog-header" id="dialogTitle">Windows Information</div>
+        <div class="dialog-content">
+          <div class="dialog-icon" id="popupIcon">🌟</div>
+          <p id="popupMessage">Welcome to Windows Vista Tetris!</p>
+        </div>
+        <div class="dialog-footer">
+          <button class="vista-btn dialog-btn pulse-btn" id="popupBtn">Continue</button>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <!-- Mobile Touch Controls Bar with Vista FULL Aero Glossy Circular Buttons -->
+  <!-- Mobile Touch Controls Bar with Borderless Aero Spheres -->
   <div class="mobile-touch-pad" id="mobileTouchPad">
     <div class="dpad-group">
       <div class="aero-circle-btn" id="btnLeft">←</div>
@@ -406,20 +446,6 @@ tetris_html = """
       <div class="aero-circle-btn" id="btnRotate">⟳</div>
       <div class="aero-circle-btn" id="btnDown">↓</div>
       <div class="aero-circle-btn" id="btnDrop">⤓</div>
-    </div>
-  </div>
-
-  <!-- Vista Dialog Popup -->
-  <div class="modal-overlay" id="popupModal">
-    <div class="dialog-box">
-      <div class="dialog-header">Windows Information</div>
-      <div class="dialog-content">
-        <div class="dialog-icon" id="popupIcon">🌟</div>
-        <p id="popupMessage">Wonderful game! You did fantastic stacking those blocks. Ready for another round?</p>
-      </div>
-      <div class="dialog-footer">
-        <button class="vista-btn dialog-btn" id="popupBtn">Play Again</button>
-      </div>
     </div>
   </div>
 </div>
@@ -589,24 +615,20 @@ function playerReset() {
     player.pos.x = (arena[0].length / 2 | 0) - (player.matrix[0].length / 2 | 0);
     if (collide(arena, player)) {
         isRunning = false;
-        showPopup("🌟 Great Job!", `Fantastic effort! You scored ${player.score} points and reached Level ${player.level}. Want to play again?`);
+        showPopup("🌟 Game Over", `Wonderful effort! You scored ${player.score} points and reached Level ${player.level}. Want to play again?`, "Play Again");
     }
 }
 
-function showPopup(title, msg) {
-    document.querySelector('.dialog-header').innerText = title;
+function showPopup(title, msg, btnText = "Continue") {
+    document.getElementById('dialogTitle').innerText = title;
     document.getElementById('popupMessage').innerText = msg;
+    document.getElementById('popupBtn').innerText = btnText;
     document.getElementById('popupModal').classList.add('active');
-    startBtn.innerText = "START";
+    startBtn.innerText = "😊 START";
 }
 
 function hidePopup() {
     document.getElementById('popupModal').classList.remove('active');
-    arena.forEach(row => row.fill(0));
-    pieceBag = [];
-    player.score = 0;
-    player.level = 1;
-    updateScore();
 }
 
 function playerRotate(dir) {
@@ -722,32 +744,51 @@ document.getElementById('btnDown').addEventListener('click', (e) => { e.preventD
 document.getElementById('btnDrop').addEventListener('click', (e) => { e.preventDefault(); if(isRunning) hardDrop(); });
 
 const startBtn = document.getElementById('startBtn');
+const helpBtn = document.getElementById('helpBtn');
+
 startBtn.addEventListener('click', () => {
     canvas.focus();
     if (!isRunning) {
-        hidePopup();
-        isRunning = true;
-        if (!player.matrix) {
-            playerReset();
-        }
-        lastTime = performance.now();
-        update();
-        startBtn.innerText = "PAUSE";
+        // Show start popup with controls guide and pulsing continue button
+        showPopup(
+            "🎮 Game Controls", 
+            "Controls:\n• Move: Arrow Keys / A & D\n• Rotate: Up Arrow / W\n• Soft Drop: Down Arrow / S\n• Hard Drop: Spacebar\n\nHave fun stacking!", 
+            "Start Game"
+        );
     } else {
         isRunning = false;
-        startBtn.innerText = "RESUME";
+        startBtn.innerText = "😊 START";
+        showPopup("⏸️ Game Paused", "The game is currently paused. Take a breather!", "Resume");
     }
+});
+
+helpBtn.addEventListener('click', () => {
+    isRunning = false;
+    startBtn.innerText = "😊 START";
+    showPopup(
+        "📖 How to Play Tetris",
+        "1. Position and rotate falling blocks to form complete horizontal lines without gaps.\n2. Completed lines clear instantly, rewarding you with points.\n3. Every 500 points increases your level and speed!\n4. Use Arrow keys / WASD or mobile Aero buttons to play.",
+        "Got it!"
+    );
 });
 
 document.getElementById('popupBtn').addEventListener('click', () => {
     canvas.focus();
     hidePopup();
+    if (document.getElementById('dialogTitle').innerText.includes("Game Over")) {
+        arena.forEach(row => row.fill(0));
+        pieceBag = [];
+        player.score = 0;
+        player.level = 1;
+        updateScore();
+    }
     isRunning = true;
-    playerReset();
+    if (!player.matrix) {
+        playerReset();
+    }
     lastTime = performance.now();
     update();
-    startBtn.innerText = "PAUSION" || "PAUSE";
-    startBtn.innerText = "PAUSE";
+    startBtn.innerText = "🛑 PAUSE";
 });
 
 canvas.focus();
